@@ -1,0 +1,257 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <!-- #####################################################################-->
+  <!--  Define the parent POM.  In this case, SwingTech uses sonatype parent-->
+  <!--  because we are using OSS Sonatype repository and it is required in  -->
+  <!--  order to deploy snapshots and releases.  Ahh...the price of free    -->
+  <!-- #####################################################################-->
+    <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>5</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.sourceforge.cooksarm.parent</groupId>
+    <artifactId>swingtech-parent-site</artifactId>
+    <packaging>pom</packaging>
+    <version>01-SNAPSHOT</version>
+
+  <!-- ####################-->
+  <!-- Project Information -->
+  <!-- ####################-->
+    <name>SwingTech</name>
+    <description>SwingTech wide configuration for Site generation projects should be placed here and all SwingTech site generation projects must inherit this POM.</description>
+    <url>http://cooksarm.sourceforge.net</url>
+    <inceptionYear>2010</inceptionYear>
+    <developers>
+        <developer>
+            <id>jrice</id>
+            <name>Joe Rice</name>
+            <email>jizzoerice@gmail.com</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+    <licenses>
+      <license>
+        <name>Apache 2</name>
+        <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        <distribution>repo</distribution>
+        <comments>A business-friendly OSS license</comments>
+      </license>
+    </licenses>
+
+  <!-- #########################-->
+  <!-- Orginization Information -->
+  <!-- #########################-->
+    <organization>
+        <name>Swing Tech Software</name>
+        <url>http://cooksarm.sourceforge.net</url>
+    </organization>
+
+  <!-- ##########################-->
+  <!-- Issue Management Resource -->
+  <!-- ##########################-->
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.pragthink.com/</url>
+    </issueManagement>
+
+  <!-- ##########################-->
+  <!-- Mailing Lists -->
+  <!-- ##########################-->
+  <mailingLists>
+    <mailingList>
+      <name>Users</name>
+      <subscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-users</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-users</unsubscribe>
+      <post>cooksarm-users@lists.sourceforge.net</post>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=cooksarm-users</archive>
+    </mailingList>
+    <mailingList>
+      <name>Cooks Arm Development</name>
+      <subscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-development</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-development</unsubscribe>
+      <post>cooksarm-development@lists.sourceforge.net</post>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=cooksarm-development</archive>
+    </mailingList>
+  </mailingLists>
+  
+  <!-- ##########################-->
+  <!-- Continuous Integration -->
+  <!-- ##########################-->
+    <ciManagement>
+    <system>bamboo</system>
+    <url>http://ci.pragthink.com/browse/COOK-CAC</url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+        <configuration><address>cooksarm-development@lists.sourceforge.net</address></configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+
+  <!-- ##########################-->
+  <!-- Source Control Management -->
+  <!-- ##########################-->
+    <scm>
+        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/siteParentPom</connection>
+        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/siteParentPom</developerConnection>
+        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/maven/ParentPOM/siteParentPom</url>
+    </scm>
+
+  <!-- ####################-->
+  <!-- Build PreRequisites -->
+  <!-- ####################-->
+    <prerequisites>
+        <maven>2.2.1</maven>
+    </prerequisites>
+
+  <!-- ##############################################################-->
+  <!-- Build Properties                                              -->
+  <!-- Define here all the system wide properties that will be used  -->
+  <!-- by the application.                                           -->
+  <!-- OVERRIDE:  Branch needs to be set by the child POM (EX) 1.0.0 -->
+  <!-- ##############################################################-->
+    <properties>
+        <branch>1.0.0</branch>
+    </properties>
+
+  <!-- #####################################################################-->
+  <!--  Define default version and scope of dependancies for SwingTech projects -->
+  <!-- #####################################################################-->
+    <dependencyManagement>
+    </dependencyManagement>
+
+  <!-- ####################################################-->
+  <!-- Global Dependencies -->
+  <!-- ####################################################-->
+    <dependencies>
+    </dependencies>
+
+  <!-- ####################-->
+  <!-- Build Phase Plugins -->
+  <!-- ####################-->
+    <build>
+    
+        <!-- *** BUILD EXTENSIONS ** - Things that need to end up on classpath of reporting block - due to bug in Maven *** -->
+        
+        <extensions>
+        </extensions>
+
+        <!-- *** BUILD PLUGINS ** -->
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>2.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-confluence</artifactId>
+                        <version>1.1.4</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        
+        <!-- *** PLUGIN MANAGEMENT ** -->
+        
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+		    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+  <!-- ##############################################################-->
+  <!-- Reports all Swing-Tech projects should generate when building site -->
+  <!-- ##############################################################-->
+    <reporting>
+        <plugins>
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+  <!-- ##############################-->
+  <!-- Maven Distribution Management -->
+  <!-- ##############################-->
+    <distributionManagement>
+        <site>
+          <id>cooksarm.sf.net</id>
+          <url>scp://shell.sourceforge.net/home/project-web/cooksarm/htdocs</url>
+        </site>
+    </distributionManagement>
+
+  <!-- ###################-->
+  <!-- Maven Repositories -->
+  <!-- ###################-->
+    <repositories>
+
+    </repositories>
+
+  <!-- ##########################-->
+  <!-- Maven Plugin Repositories -->
+  <!-- ##########################-->
+    <pluginRepositories>
+
+    </pluginRepositories>
+
+  <!-- ##########################-->
+  <!-- Profiles -->
+  <!-- ##########################-->
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

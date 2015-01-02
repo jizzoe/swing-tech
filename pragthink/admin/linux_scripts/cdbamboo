@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $BAMBOO_HOME
+echo $BAMBOO_HOME

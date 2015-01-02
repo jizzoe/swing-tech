@@ -1,0 +1,7 @@
+. setenv.sh
+
+echo moving log files to backup...
+
+sudo -u root mv $JIRA_HOME/logs/* $JIRA_HOME/logs/backup
+
+sudo -u root $JIRA_HOME/bin/startup.sh

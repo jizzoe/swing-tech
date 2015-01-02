@@ -1,0 +1,16 @@
+<!-- ####################-->
+<!-- Standard set of FindBug exclusions to be applied in all Pragthink projects -->
+<!-- ####################-->
+
+<FindBugsFilter>
+     <!-- Don't check for dead local store.  Too many false positives -->
+     <Match>
+       <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+     </Match>
+     
+     <!-- Don't check for dead local store.  Too many false positives -->
+     <Match>
+       <Class name="com.swingtech.cooksarm.core.dao.jpa.db.model.*" />
+     </Match>
+
+</FindBugsFilter>

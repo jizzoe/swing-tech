@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $JIRA_HOME/atlassian-jira/WEB-INF
+echo $JIRA_HOME/atlassian-jira/WEB-INF

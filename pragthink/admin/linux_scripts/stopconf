@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo -u confluenceuser $CONFLUENCE_HOME/bin/shutdown.sh

@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $CROWD_HOME/apache-tomcat/logs
+echo $CROWD_HOME/apache-tomcat/logs

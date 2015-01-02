@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $CROWD_HOME
+echo $CROWD_HOME

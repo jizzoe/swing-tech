@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $SONAR_HOME/logs
+echo $SONAR_HOME/logs

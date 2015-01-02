@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $SCRIPTS_HOME
+echo $SCRIPTS_HOME

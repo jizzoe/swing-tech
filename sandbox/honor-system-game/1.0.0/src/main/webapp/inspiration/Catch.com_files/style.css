@@ -1,0 +1,174 @@
+/*
+Theme Name: Catch
+Theme URI: http://catch.com/
+Description: The 2011 theme for Catch.com.
+Author: Hybrid Design
+Author URI: http://hybrid-design.com/
+Version: 1.0
+Tags: blue, white, 960, 16 columns, custom-design (optional)
+
+
+
+*/
+-------------------------------------------------------------- */
+/*
+  960 Grid System ~ Text CSS.
+  Learn more ~ http://960.gs/
+
+  Licensed under GPL and MIT.
+*/
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+/*@font-face {
+    font-family: 'Museo500';
+    src: url('fonts/Museo500-Regular-webfont.eot');
+    src: url('fonts/Museo500-Regular-webfont.eot?iefix') format('eot'),
+         url('fonts/Museo500-Regular-webfont.woff') format('woff'),
+         url('fonts/Museo500-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Museo500-Regular-webfont.svg#webfontQF7qPaga') format('svg');
+
+}*/
+
+.Museo-300 { 
+	font-family: museo; /*Museo-300;*/
+	font-weight: 300; /*normal;*/
+	font-style: normal;
+}
+
+
+body {
+  font: 14px/1.4 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  color:#2e2e2e;
+  line-height:22px;
+  font-weight:400;
+  background: #fff;
+}
+
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+  font-size: 30px;
+  font-family: museo-sans;
+  line-height:36px;
+  font-weight: 300;
+  padding-bottom:20px;
+}
+
+h2, h3.widget-title {
+    font-family: museo-sans;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 30px;
+	padding-top:25px;
+}
+
+h3 {
+  font-size: 20px;
+  font-family: museo-sans;
+  font-weight: 300;
+  line-height:22px;
+  font-style: normal;
+  /*font-weight: lighter;*/
+  padding-top:25px;
+ 
+}
+
+h4 {
+  font-size: 19px;
+}
+
+h5 {
+  font-size: 17px;
+}
+
+h6 {
+  
+}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+  list-style: decimal;
+}
+
+ul {
+  list-style: disc;
+}
+
+li {
+
+}
+
+p {
+	line-height:22px;
+}
+
+a:link {text-decoration:none; color:#0a5d8e;}
+a:visited {color:#0a5d8e;}
+a:hover {color:#f69321;}
+a {outline: none;}
+a img {border:none;}
+
+/* Alignment */
+.alignleft {
+	display: inline;
+	float: left;
+	padding-right: 12px;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	padding-left: 12px;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img.alignleft,
+img.alignright,
+img.aligncenter {
+	padding-bottom: 10px;
+}
+
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset,
+figure {
+  margin-bottom: 10px;
+}
+
+ul.padded {
+	margin-left: 24px;
+}
+
+ul.padded li {
+	
+}
+
+#nav-single {
+	float: right;
+	margin-right: 20px;
+}

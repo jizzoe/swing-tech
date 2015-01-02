@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $CONFLUENCE_HOME/logs
+echo $CONFLUENCE_HOME/logs

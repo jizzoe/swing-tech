@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo -u root $CROWD_HOME/apache-tomcat/bin/shutdown.sh

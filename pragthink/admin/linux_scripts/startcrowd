@@ -1,0 +1,7 @@
+. setenv.sh
+
+echo moving log files to backup...
+
+sudo -u crowduser mv $CROWD_HOME/apache-tomcat/logs/* $CROWD_HOME/apache-tomcat/logs/backup
+
+sudo -u crowduser $CROWD_HOME/apache-tomcat/bin/startup.sh

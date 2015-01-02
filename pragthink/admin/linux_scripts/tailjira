@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo -u jirauser tail -f $JIRA_HOME/logs/catalina.out

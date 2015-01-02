@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $COOKS_ARM_SVN_HOME
+echo $COOKS_ARM_SVN_HOME

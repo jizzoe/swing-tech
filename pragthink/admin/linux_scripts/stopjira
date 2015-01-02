@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo -u jirauser $JIRA_HOME/bin/shutdown.sh

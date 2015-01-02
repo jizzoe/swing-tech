@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="console" class="org.apache.log4j.ConsoleAppender"> 
+      <param name="Target" value="System.out"/> 
+      <layout class="org.apache.log4j.PatternLayout"> 
+        <param name="ConversionPattern" value="%-5p %c - %m%n"/> 
+      </layout> 
+    </appender> 
+
+
+    <appender name="SERVER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="C:/joes_stuff/projects/cooks_arm/cooks_arm-core/1.1.0/target/logs/server.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="10MB"/>
+	<!-- Keep one backup file -->
+	<param name="MaxBackupIndex" value="1"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%p %t %c - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="TRACE"/>
+            <param name="LevelMax" value="WARN"/>
+            <param name="AcceptOnMatch" value="true "/>
+        </filter>
+    </appender>
+
+    <appender name="ERROR" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="C:/joes_stuff/projects/cooks_arm/cooks_arm-core/1.1.0/target/logs/error.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="10MB"/>
+	<!-- Keep one backup file -->
+	<param name="MaxBackupIndex" value="1"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The pattern: Date Priority [Category:Method] Message\n -->
+            <param name="ConversionPattern" value="%d %-5p %c [%t] Session:[%X{sessionId}] SWID:[%X{swid}] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="ERROR"/>
+            <param name="LevelMax" value="FATAL"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <root>
+        <priority value="DEBUG"/>
+        <appender-ref ref="SERVER"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="ERROR"/>
+    </root>
+
+
+</log4j:configuration>

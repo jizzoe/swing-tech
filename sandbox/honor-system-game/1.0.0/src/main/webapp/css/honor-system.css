@@ -1,0 +1,134 @@
+/
+
+body {
+    background: #E3E3E3;     
+      
+}
+
+header {
+    background: #256082;
+    height: 60px;
+    border: solid 1px
+    
+  
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#256082), to(#3294DC));
+	background: -moz-linear-gradient(top,  #256082,  #3294DC);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#256082', endColorstr='#3294DC');
+
+	
+    box-shadow:         0px 1px 5px 1px black;
+} 
+
+#header-div {
+
+    width: 960px;
+    height: 960px;
+    margin: auto;
+}
+
+#header-div h1 {
+    font-family: 'Handlee', cursive;
+    color:   white;
+    font-size: 40px;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin: 0px;
+    float: left;
+}
+
+#main-nav {
+    margin: 0px;
+    margin-left: 40px;
+    padding: 0px;
+    margin-top: 25px;
+    float: left;
+    bordder: solid;
+}
+
+#main-nav li {
+    bordder: solid;
+    float:left;
+    margin-right: 30px;
+    background: #FDD82C;
+    color: white;
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: white;
+    text-decoration:none;
+    font-size: 14px;
+    border-radius: 2px;
+
+    /* Make it so */
+    transform:rotate(-2deg);
+    -ms-transform:rotate(-2deg); /* IE 9 */
+    -moz-transform:rotate(-2deg); /* Firefox */
+    -webkit-transform:rotate(-2deg); /* Safari and Chrome */
+    -o-transform:rotate(-2deg); /* Opera */
+    border-bottom: solid 1px black;
+    box-shadow: 2px 2px 2px rgba(253, 249, 130, 0.5);
+}
+
+
+#main-nav li a {
+    color: black;
+    text-decoration:none;
+    font-family: 'Gochi Hand';
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+
+#main-nav li:hover {
+    background: #F20E0A;
+    color: white;
+}
+
+#wrapper {
+    background:  #E0DDE3;
+    width: 960px;
+    height: 960px;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 7px;
+    padding: 5px;
+    padding-left: 5px;
+}
+
+#main-page-content h1 {
+    text-align: center;
+    margin:30px 0;
+    margin-bottom:10px;
+    font-weight:300;
+    font-size:2.5em
+}
+
+#presentation-box {
+	padding: 10px;
+	width: 800px;
+	margin: auto;
+	margin-top: 30px;
+	
+	border: solid;
+	border-width: 2px;
+	border-radius: 10px;
+	border-color: blue;	
+	overflow: hidden;		
+}
+
+#presentation-image {
+	float: left;
+	border: solid;
+	border-width: 1px;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 3px 3px 2px #888;
+}
+
+#presentation-text {
+	float: left;
+	margin-left: 20px;
+}

@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+      <groupId>com.swing-tech.parent</groupId>
+      <artifactId>swingtech-parent-tools</artifactId>
+      <version>01-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.swing-tech.build</groupId>
+    <artifactId>swing-tech-build-tools</artifactId>
+    <version>1.0.0.0000-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <!-- ####################-->
+    <!-- Project Information -->
+    <!-- ####################-->
+    <name>Standard Prag Think PMD Rulesets</name>
+    <description>
+         Standard set of PMD Rulesets, Checkstyle rules, and Find Bug configs to be applied to all PragThink projects
+    </description>
+    
+    <url>http://cooksarm.sourceforge.net</url>
+    
+    <inceptionYear>2010</inceptionYear>
+    
+    <developers>
+        <developer>
+            <id>jrice</id>
+            <name>Joe Rice</name>
+            <email>jizzoerice@gmail.com</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+    
+    <!-- ####################-->
+    <!-- Properties -->
+    <!-- ####################-->
+    <properties>
+        <branch>1.0.0</branch>
+    </properties>
+
+    <!-- ####################-->
+    <!-- Source Control -->
+    <!-- ####################-->
+    <scm>
+        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/pragthink/build-tools/1.0.0</connection>
+        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/pragthink/build-tools/1.0.0</developerConnection>
+        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/pragthink/build-tools/1.0.0</url>
+    </scm>
+</project>

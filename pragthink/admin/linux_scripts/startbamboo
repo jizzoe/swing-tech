@@ -1,0 +1,7 @@
+. setenv.sh
+
+echo moving log files to backup...
+
+sudo -u root mv $BAMBOO_HOME/logs/* $BAMBOO_HOME/logs/backup
+
+sudo -u root $BAMBOO_HOME/bamboo.sh start

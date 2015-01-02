@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $JIRA_HOME
+echo $JIRA_HOME

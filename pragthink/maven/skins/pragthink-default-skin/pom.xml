@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <!-- #####################################################################-->
+  <!--  Define the parent POM.  In this case, SwingTech uses sonatype parent-->
+  <!--  because we are using OSS Sonatype repository and it is required in  -->
+  <!--  order to deploy snapshots and releases.  Ahh...the price of free    -->
+  <!-- #####################################################################-->
+    <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>5</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.sourceforge.cooksarm.sites</groupId>
+    <artifactId>pragthink-default-skins</artifactId>
+    <version>01-SNAPSHOT</version>
+</project>

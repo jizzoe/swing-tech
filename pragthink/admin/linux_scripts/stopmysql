@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo $MYSQL_HOME/mysqld stop

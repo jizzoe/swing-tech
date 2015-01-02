@@ -1,0 +1,3 @@
+. setenv.sh
+
+sudo -u root $BAMBOO_HOME/bamboo.sh stop

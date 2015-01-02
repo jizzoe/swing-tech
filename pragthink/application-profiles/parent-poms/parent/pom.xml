@@ -1,0 +1,898 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- ##################################################################### -->
+    <!-- Define the parent POM. In this case, SwingTech uses sonatype parent -->
+    <!-- because we are using OSS Sonatype repository and it is required in -->
+    <!-- order to deploy snapshots and releases. Ahh...the price of free -->
+    <!-- ##################################################################### -->
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.swing-tech.parent</groupId>
+    <artifactId>swingtech-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- #################### -->
+    <!-- Project Information -->
+    <!-- #################### -->
+    <name>SwingTech</name>
+    <description>SwingTech wide configuration should be placed here and all SwingTech projects must inherit this POM.</description>
+    <url>http://cooksarm.sourceforge.net</url>
+    <inceptionYear>2010</inceptionYear>
+    <developers>
+        <developer>
+            <id>jrice</id>
+            <name>Joe Rice</name>
+            <email>jizzoerice@gmail.com</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <!-- ######################### -->
+    <!-- Orginization Information -->
+    <!-- ######################### -->
+    <organization>
+        <name>Swing Tech Software</name>
+        <url>http://cooksarm.sourceforge.net</url>
+    </organization>
+
+    <!-- ########################## -->
+    <!-- Issue Management Resource -->
+    <!-- ########################## -->
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.pragthink.com/</url>
+    </issueManagement>
+
+    <!-- ########################## -->
+    <!-- Mailing Lists -->
+    <!-- ########################## -->
+    <mailingLists>
+        <mailingList>
+            <name>Users</name>
+            <subscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-users</subscribe>
+            <unsubscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-users</unsubscribe>
+            <post>cooksarm-users@lists.sourceforge.net</post>
+            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=cooksarm-users</archive>
+        </mailingList>
+        <mailingList>
+            <name>Cooks Arm Development</name>
+            <subscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-development</subscribe>
+            <unsubscribe>https://lists.sourceforge.net/lists/listinfo/cooksarm-development</unsubscribe>
+            <post>cooksarm-development@lists.sourceforge.net</post>
+            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=cooksarm-development</archive>
+        </mailingList>
+    </mailingLists>
+
+    <!-- ########################## -->
+    <!-- Continuous Integration -->
+    <!-- ########################## -->
+    <ciManagement>
+        <system>bamboo</system>
+        <url>http://ci.pragthink.com/browse/COOK-CAC</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+                <configuration>
+                    <address>cooksarm-development@lists.sourceforge.net</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <!-- ########################## -->
+    <!-- Source Control Management -->
+    <!-- ########################## -->
+    <scm>
+        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM</connection>
+        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM</developerConnection>
+        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/maven/ParentPOM</url>
+    </scm>
+
+    <!-- #################### -->
+    <!-- Build PreRequisites -->
+    <!-- #################### -->
+    <prerequisites>
+        <maven>2.2.1</maven>
+    </prerequisites>
+
+    <!-- ############################################################## -->
+    <!-- Build Properties -->
+    <!-- Define here all the system wide properties that will be used -->
+    <!-- by the application. -->
+    <!-- ############################################################## -->
+    <properties>
+        <!-- OVERRIDE: Branch needs to be set by the child POM (EX) 1.0.0 -->
+        <branch>1.0.0</branch>
+
+        <!-- Quality Check Properties
+            Add these properties in child poms to override the default behavior. Otherwise, all poms
+            will inherit these properties
+        -->
+        <pmd.failOnViolation>true</pmd.failOnViolation>
+        <pmd.failurePriority>2</pmd.failurePriority>
+
+        <checkstyle.failOnViolation>true</checkstyle.failOnViolation>
+        <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+        <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
+
+        <findbugs.failOnError>true</findbugs.failOnError>
+        <findbugs.effort>Max</findbugs.effort>
+        <findbugs.threshold>Default</findbugs.threshold>
+
+        <javancss.failOnViolation>true</javancss.failOnViolation>
+        <javancss.ccnLimit>10</javancss.ccnLimit>
+        <javancss.ncssLimit>100</javancss.ncssLimit>
+
+        <cobertura.haltOnFailure>true</cobertura.haltOnFailure>
+        <cobertura.totalBranchRate>85</cobertura.totalBranchRate>
+        <cobertura.totalLineRate>85</cobertura.totalLineRate>
+        <cobertura.packageBranchRate>85</cobertura.packageBranchRate>
+        <cobertura.packageLineRate>85</cobertura.packageLineRate>
+
+        <!-- Build Tools Version -->
+        <buildtools.version>1.0.0.0000-SNAPSHOT</buildtools.version>
+    </properties>
+
+    <!-- ##################################################################### -->
+    <!-- Define default version and scope of dependancies for SwingTech projects -->
+    <!-- ##################################################################### -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymockclassextension</artifactId>
+                <version>3.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.16</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.1</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- #################################################### -->
+    <!-- Global Dependencies -->
+    <!-- #################################################### -->
+    <dependencies>
+        <!-- All SwingTech projects MUST run unit tests during build and most projects will make use
+            of mocks -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymockclassextension</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- Log4J is the standard logging framework and all Swing-Tech projects must use commons-logging
+            interface to log4J (for log implementation switching) -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+
+
+        <!-- Custom Swing-Tech rule sets for Quality tools (PMD, CheckStyle, FindBugs, JavaNCSS, etc).
+            All SwingTech projects MUST run the standard Code Quality checks
+        -->
+        <dependency>
+            <groupId>com.swing-tech.build</groupId>
+            <artifactId>swing-tech-build-tools</artifactId>
+            <version>${buildtools.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- #################### -->
+    <!-- Build Phase Plugins & Plugin Management -->
+    <!-- #################### -->
+    <build>
+        <extensions>
+            <!-- *** BUILD EXTENSIONS ** - Things that need to end up on classpath of reporting block
+                - due to bug in Maven *** -->
+
+            <!-- Including build-tools as Extension to ensure rulesets are avaialable to quality check
+                tools. All SwingTech projects MUST run Quality Checks using standard SwingTech rulesets
+            -->
+            <extension>
+                <groupId>com.swing-tech.build</groupId>
+                <artifactId>swing-tech-build-tools</artifactId>
+                <version>${buildtools.version}</version>
+            </extension>
+        </extensions>
+
+        <!-- *** BUILD PLUGINS ** -->
+
+        <!-- PMD Plugin -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                            <goal>cpd-check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <rulesets>
+                        <ruleset>pmd/pragthink_standard_pmd_ruleset.xml</ruleset>
+                    </rulesets>
+                    <format>xml</format>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <targetJdk>1.6</targetJdk>
+                    <failOnViolation>${pmd.failOnViolation}</failOnViolation>
+                    <failurePriority>${pmd.failurePriority}</failurePriority>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- Checkstyle Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnViolation>${checkstyle.failOnViolation}</failOnViolation>
+                    <configLocation>checkstyle/pragthink_standard_checkstyle_checks.xml</configLocation>
+                    <headerLocation>checkstyle/pragthink_standard_license_header.txt</headerLocation>
+                    <consoleOutput>${checkstyle.consoleOutput}</consoleOutput>
+                    <logViolationsToConsole>${checkstyle.logViolationsToConsole}</logViolationsToConsole>
+                </configuration>
+            </plugin>
+
+            <!-- Unpack the build-tools .jar. this is because FindBugs is not smart enough to find the
+                .jar on the classpath.
+                Even though I put it in extensions. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-findbugs</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.swing-tech.build</groupId>
+                                    <artifactId>swing-tech-build-tools</artifactId>
+                                    <version>${buildtools.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>target/pragthink/build-tools/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                            <!-- other configurations here -->
+                            <excludes>META-INF/</excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- FindbugsPlugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <failOnError>${findbugs.failOnError}</failOnError>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>target/pragthink/build-tools/findbugs/pragthink_standard_findbugs_exclude.xml</excludeFilterFile>
+                    <effort>${findbugs.effort}</effort>
+                    <threshold>${findbugs.threshold}</threshold>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>findbugs-run</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Java NCSS Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>javancss-maven-plugin</artifactId>
+                <configuration>
+                    <failOnViolation>${javancss.failOnViolation}</failOnViolation>
+                    <ccnLimit>${javancss.ccnLimit}</ccnLimit>
+                    <ncssLimit>${javancss.ncssLimit}</ncssLimit>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate_javancss</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Cobertura Plugin (Code Coverage) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <forceMojoExecution>true</forceMojoExecution>
+                    <instrumentation>
+                        <includes>
+                            <include>com/**/*.class</include>
+                        </includes>
+                    </instrumentation>
+                    <check>
+                        <haltOnFailure>${cobertura.haltOnFailure}</haltOnFailure>
+                        <totalBranchRate>${cobertura.totalBranchRate}</totalBranchRate>
+                        <totalLineRate>${cobertura.totalLineRate}</totalLineRate>
+                        <packageBranchRate>${cobertura.packageBranch}</packageBranchRate>
+                        <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
+                    </check>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Surefire Plugin (Unit Tests) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!-- Don't run integration tests while running unit tests -->
+                <configuration>
+                    <excludes>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Build Helper Plugin - Adds "src/it/java" and "src/it/resources" to classpath so we can 
+                 segregate Integration Tests from Unit Tests -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/it/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource><directory>src/it/resources</directory></resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-confluence</artifactId>
+                        <version>1.2</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>1.1.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>javancss-maven-plugin</artifactId>
+                    <version>2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>tomcat-maven-plugin</artifactId>
+                    <version>1.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jxr-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- ############################################################## -->
+    <!-- Reporting Plugins -->
+    <!-- Standard Reports that all Swing-Tech projects should generate -->
+    <!-- when building site -->
+    <!-- ############################################################## -->
+    <reporting>
+        <plugins>
+
+            <!-- JXR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- PMD Report Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>pmd/pragthink_standard_pmd_ruleset.xml</ruleset>
+                    </rulesets>
+                    <format>xml</format>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <targetJdk>1.6</targetJdk>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- Checkstyle Report Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.6</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <configLocation>checkstyle/pragthink_standard_checkstyle_checks.xml</configLocation>
+                    <headerLocation>checkstyle/pragthink_standard_license_header.txt</headerLocation>
+                </configuration>
+            </plugin>
+
+            <!-- Findbugs Report Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.3.2</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>target/pragthink/build-tools/findbugs/pragthink_standard_findbugs_exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+
+            <!-- javancss Report Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>javancss-maven-plugin</artifactId>
+                <version>2.0</version>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- Cobertura Coverage Report Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.1</version>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- Taglist Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+                <version>2.4</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <tags>
+                        <tag>TODO</tag>
+                        <tag>FIXME</tag>
+                        <tag>DOCME</tag>
+                        <tag>@docme</tag>
+                        <tag>@todo</tag>
+                        <tag>@deprecated</tag>
+                        <tag>HACK</tag>
+                    </tags>
+                </configuration>
+            </plugin>
+
+            <!-- Java Doc Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8</version>
+                <reportSets>
+                    <reportSet>
+                        <id>sunlink</id>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <links>
+                                <link>http://java.sun.com/javase/6/docs/api/</link>
+                            </links>
+                        </configuration>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+            <!-- Maven Dependency & JDepend Plugins -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+                <inherited>true</inherited>
+            </plugin>
+
+            <plugin>
+                <!-- Added to speed up Dependencies Report -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.4</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>summary</report>
+                            <report>license</report>
+                            <report>scm</report>
+                            <report>issue-tracking</report>
+                            <report>mailing-list</report>
+                            <report>cim</report>
+                            <report>project-team</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0-beta-2</version>
+                <inherited>true</inherited>
+            </plugin>
+
+            <!-- Surefire Tests Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.10</version>
+                <inherited>true</inherited>
+            </plugin>
+
+        </plugins>
+    </reporting>
+
+    <!-- ################### -->
+    <!-- Maven Repositories -->
+    <!-- ################### -->
+    <repositories>
+        <!-- Repositories should be defined in settings.xml, not in pom -->
+    </repositories>
+
+    <!-- ########################## -->
+    <!-- Maven Plugin Repositories -->
+    <!-- ########################## -->
+    <pluginRepositories>
+        <!-- Repositories should be defined in settings.xml, not in pom -->
+    </pluginRepositories>
+
+    <!-- ########################## -->
+    <!-- Profiles -->
+    <!-- ########################## -->
+    <profiles>
+        <!-- Profile for signing artifacts using gpg. This is a requirement of OSS Sonatype repo hosting. -->
+        <profile>
+            <id>release-sign-artifacts</id>
+
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Profile for running Integration Tests. Integration tests will only run if "-DrunIT=true" 
+            property is set -->
+        <profile>
+            <id>integration-tests</id>
+
+            <activation>
+                <property>
+                    <name>runIT</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <version>2.10</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*IntegrationTest.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+    <distributionManagement>
+    
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://107.178.222.75:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>nexus-release</id>
+            <name>Nexus Release Repository</name>
+
+            <url>
+                http://107.178.222.75:8081/nexus/content/repositories/releases/
+            </url>
+        </repository>
+    </distributionManagement>
+</project>

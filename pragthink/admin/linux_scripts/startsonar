@@ -1,0 +1,7 @@
+. setenv.sh
+
+echo moving log files to backup...
+
+sudo -u root mv $SONAR_HOME/logs/* $SONAR_HOME/logs/backup
+
+sudo -u root $SONAR_HOME/bin/linux-x86-32/sonar.sh start

@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>net.sourceforge.cooksarm</groupId>
+        <artifactId>swingtech-parent</artifactId>
+        <version>03-SNAPSHOT</version>
+    </parent>
+    
+    <modelVersion>4.0.0</modelVersion>
+    <!-- NOTE:  inherits group id from parent pom. -->
+    <artifactId>commons-testing</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0.0001-SNAPSHOT</version>
+    
+    <!-- ####################-->
+    <!-- Project Information -->
+    <!-- ####################-->
+    <name>Cooks Arm - Core</name>
+    <description>This project contains convience classes and utilities to make it easier to write unit tests</description>
+    <url>http://cooksarm.sourceforge.net</url>
+    <inceptionYear>2010</inceptionYear>
+    <developers>
+        <developer>
+            <id>jrice</id>
+            <name>Joe Rice</name>
+            <email>jizzoerice@gmail.com</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+    <!-- ####################-->
+    <!-- Properties -->
+    <!-- ####################-->
+    <properties>
+        <branch>1.0.0</branch>
+    </properties>
+
+
+    <!-- ####################-->
+    <!-- Source Control -->
+    <!-- ####################-->
+    <scm>
+        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/commons/commons-testing/${branch}/</connection>
+        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/commons/commons-testing/${branch}/</developerConnection>
+        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/commons/commons-testing/${branch}/</url>
+    </scm>
+
+    <!-- ####################-->
+    <!-- Dependencies -->
+    <!-- ####################-->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.5</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    
+    <!-- ####################-->
+    <!-- Build Phase Plugins -->
+    <!-- ####################-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <configuration>
+                    <instrumentation>
+                        <includes>
+                            <include>com/swingtech/commons/**/*.class</include>
+                        </includes>
+                    </instrumentation>
+                    <check>
+                        <totalBranchRate>7</totalBranchRate>
+                        <totalLineRate>7</totalLineRate>
+                        <haltOnFailure>true</haltOnFailure>
+                    </check>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>javancss-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/swingtech/commons/testing/JavaBeanTester.java</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate_javancss</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>javancss_check</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+        </plugins>
+    </build>
+</project>

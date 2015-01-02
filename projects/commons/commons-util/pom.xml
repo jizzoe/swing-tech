@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.swing-tech.platform.parent</groupId>
+        <artifactId>library</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.swing-tech.commons</groupId>
+    <artifactId>commons-util</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0.0002-SNAPSHOT</version>
+
+    <!-- #################### -->
+    <!-- Project Information -->
+    <!-- #################### -->
+    <name>Cooks Arm - Core</name>
+    <description>This project contains generic, non domain-specific utilities</description>
+    <url>http://cooksarm.sourceforge.net</url>
+    <inceptionYear>2010</inceptionYear>
+    <developers>
+        <developer>
+            <id>jrice</id>
+            <name>Joe Rice</name>
+            <email>jizzoerice@gmail.com</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- #################### -->
+    <!-- Properties -->
+    <!-- #################### -->
+    <properties>
+        <branch>1.0.0</branch>
+        
+        <jackson.version>2.2.1</jackson.version>
+
+        <!-- Project-Specific Code Quality Check Properties -->
+
+        <!-- TODO Tech Debt: http://jira.pragthink.com/browse/COOK-106
+            Turning off code quality checks for now because the code comes from other places and no time 
+            to fix. But need to clean this code up, add test cases, then turn quality checks back on.  -->
+        <pmd.failOnViolation>false</pmd.failOnViolation>
+        <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
+        <findbugs.failOnError>false</findbugs.failOnError>
+        <javancss.failOnViolation>false</javancss.failOnViolation>
+        <cobertura.haltOnFailure>false</cobertura.haltOnFailure>
+    </properties>
+
+    <!-- #################### -->
+    <!-- Source Control -->
+    <!-- #################### -->
+    <scm>
+        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/commons/commons-util/1.0.0/</connection>
+        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/commons/commons-util/1.0.0/</developerConnection>
+        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/commons/commons-util/1.0.0/</url>
+    </scm>
+
+    <!-- #################### -->
+    <!-- Dependencies -->
+    <!-- #################### -->
+    <dependencies>
+        <!-- JSON Mapping Dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-xml-provider</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+    </dependencies>
+
+    <!-- #################### -->
+    <!-- Build Phase Plugins -->
+    <!-- #################### -->
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+</project>

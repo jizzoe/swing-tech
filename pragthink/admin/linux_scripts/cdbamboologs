@@ -1,0 +1,4 @@
+. setenv.sh
+
+cd $BAMBOO_HOME/logs
+echo $BAMBOO_HOME/logs

@@ -1,0 +1,7 @@
+. setenv.sh
+
+echo moving log files to backup...
+
+sudo -u confluenceuser mv $CONFLUENCE_HOME/logs/* $CONFLUENCE_HOME/logs/backup
+
+sudo -u confluenceuser $CONFLUENCE_HOME/bin/startup.sh
