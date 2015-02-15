@@ -8,7 +8,7 @@
     <groupId>com.swing-tech.parent</groupId>
     <artifactId>swingtech-parent-tools</artifactId>
     <packaging>pom</packaging>
-    <version>07-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
   <!-- ####################-->
   <!-- Project Information -->
@@ -59,7 +59,7 @@
         <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
         <developerConnection>scm:git:https://github.com/jizzoe/swing-tech</developerConnection>
         <url>https://github.com/jizzoe/swing-tech/</url>
-      <tag>swingtech-parent-tools-02</tag>
+      <tag>swingtech-parent-tools-07</tag>
   </scm>
 
   <!-- ####################-->
@@ -108,7 +108,7 @@
         </snapshotRepository>
 
         <repository>
-            <id>nexus-release</id>
+            <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
 
             <url>
