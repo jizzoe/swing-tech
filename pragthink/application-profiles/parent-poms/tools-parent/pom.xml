@@ -8,7 +8,7 @@
     <groupId>com.swing-tech.parent</groupId>
     <artifactId>swingtech-parent-tools</artifactId>
     <packaging>pom</packaging>
-    <version>01-SNAPSHOT</version>
+    <version>07-SNAPSHOT</version>
 
   <!-- ####################-->
   <!-- Project Information -->
@@ -56,10 +56,11 @@
   <!-- Source Control Management -->
   <!-- ##########################-->
     <scm>
-        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/toolsParentPom</connection>
-        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/toolsParentPom</developerConnection>
-        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/maven/ParentPOM/toolsParentPom</url>
-    </scm>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
+        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech/</url>
+      <tag>swingtech-parent-tools-02</tag>
+  </scm>
 
   <!-- ####################-->
   <!-- Build PreRequisites -->
@@ -103,7 +104,7 @@
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>http://107.178.222.75:8081/nexus/content/repositories/snapshots/</url>
+            <url>http://admin.swing-tech.com:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
 
         <repository>
@@ -111,7 +112,7 @@
             <name>Nexus Release Repository</name>
 
             <url>
-                http://107.178.222.75:8081/nexus/content/repositories/releases/
+                http://admin.swing-tech.com:8081/nexus/content/repositories/releases/
             </url>
         </repository>
     </distributionManagement>

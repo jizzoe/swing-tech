@@ -153,7 +153,7 @@ under the License.
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>
       <name>Human Readable Name for this Mirror.</name>
-      <url>https://107.178.222.75:8081/nexus/content/groups/public</url>
+      <url>https://admin.swing-tech.com:8081/nexus/content/groups/public</url>
     </mirror>
      -->
   </mirrors>
@@ -187,13 +187,13 @@ under the License.
       <repositories>
         <repository>
           <id>nexus-snapshots</id>
-          <url>http://107.178.222.75:8081/nexus/content/repositories/snapshots/</url>
+          <url>http://admin.swing-tech.com:8081/nexus/content/repositories/snapshots/</url>
           <releases><enabled>false</enabled></releases>
           <snapshots><enabled>true</enabled></snapshots>
         </repository>
         <repository>
           <id>nexus-releases</id>
-          <url>http://107.178.222.75:8081/nexus/content/repositories/releases/</url>
+          <url>http://admin.swing-tech.com:8081/nexus/content/repositories/releases/</url>
           <releases><enabled>true</enabled></releases>
           <snapshots><enabled>false</enabled></snapshots>
         </repository>
