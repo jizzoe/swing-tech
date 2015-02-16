@@ -14,7 +14,7 @@
     <groupId>net.sourceforge.cooksarm.parent</groupId>
     <artifactId>swingtech-parent-site</artifactId>
     <packaging>pom</packaging>
-    <version>01</version>
+    <version>01-SNAPSHOT</version>
 
   <!-- ####################-->
   <!-- Project Information -->
