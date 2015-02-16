@@ -5,16 +5,16 @@
   <!--  order to deploy snapshots and releases.  Ahh...the price of free    -->
   <!-- #####################################################################-->
     <parent>
-      <groupId>org.sonatype.oss</groupId>
-      <artifactId>oss-parent</artifactId>
-      <version>5</version>
+      <groupId>com.swing-tech.parent</groupId>
+      <artifactId>swingtech-parent</artifactId>
+      <version>1.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sourceforge.cooksarm.parent</groupId>
     <artifactId>swingtech-parent-site</artifactId>
     <packaging>pom</packaging>
-    <version>01-SNAPSHOT</version>
+    <version>01</version>
 
   <!-- ####################-->
   <!-- Project Information -->
@@ -226,32 +226,6 @@
   <!-- ##########################-->
   <profiles>
     <profile>
-      <id>release-sign-artifacts</id>
-
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
