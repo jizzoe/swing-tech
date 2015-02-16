@@ -2,7 +2,7 @@
     <parent>
       <groupId>com.swing-tech.parent</groupId>
       <artifactId>swingtech-parent-tools</artifactId>
-      <version>01-SNAPSHOT</version>
+      <version>1.6</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -45,8 +45,8 @@
     <!-- Source Control -->
     <!-- ####################-->
     <scm>
-        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/pragthink/build-tools/1.0.0</connection>
-        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/pragthink/build-tools/1.0.0</developerConnection>
-        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/pragthink/build-tools/1.0.0</url>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech</connection>
+        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech</url>
     </scm>
 </project>

@@ -519,6 +519,21 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+        	<!-- Plugin to fix problem with releasing with git:  http://jira.codehaus.org/browse/MRELEASE-875 -->
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-release-plugin</artifactId>
+		    <version>2.5</version>
+		    <dependencies>
+			<dependency>
+			    <groupId>org.apache.maven.scm</groupId>
+			    <artifactId>maven-scm-provider-gitexe</artifactId>
+			    <version>1.9.1</version>
+			</dependency>
+		    </dependencies>
+		    <configuration>
+		    </configuration>
+		</plugin>
         </plugins>
 
         <pluginManagement>
@@ -879,7 +894,6 @@
 
 
     <distributionManagement>
-    
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
@@ -887,7 +901,7 @@
         </snapshotRepository>
 
         <repository>
-            <id>nexus-release</id>
+            <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
 
             <url>
