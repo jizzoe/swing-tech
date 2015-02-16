@@ -14,7 +14,7 @@
     <groupId>net.sourceforge.cooksarm.parent</groupId>
     <artifactId>swingtech-parent-site</artifactId>
     <packaging>pom</packaging>
-    <version>01-SNAPSHOT</version>
+    <version>01</version>
 
   <!-- ####################-->
   <!-- Project Information -->
@@ -103,7 +103,8 @@
         <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
         <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
         <url>https://github.com/jizzoe/swing-tech/</url>
-    </scm>
+      <tag>swingtech-parent-site-01</tag>
+  </scm>
 
   <!-- ####################-->
   <!-- Build PreRequisites -->
