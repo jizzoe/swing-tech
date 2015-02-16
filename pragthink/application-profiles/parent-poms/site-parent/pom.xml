@@ -100,9 +100,9 @@
   <!-- Source Control Management -->
   <!-- ##########################-->
     <scm>
-        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/siteParentPom</connection>
-        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM/siteParentPom</developerConnection>
-        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/maven/ParentPOM/siteParentPom</url>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
+        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech/</url>
     </scm>
 
   <!-- ####################-->

@@ -64,9 +64,9 @@
     <!-- Source Control Management -->
     <!-- ########################## -->
     <scm>
-        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/pragthink/application-profiles/parent-poms/webapps-parent/01</connection>
-        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/pragthink/application-profiles/parent-poms/webapps-parent/01</developerConnection>
-        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/pragthink/application-profiles/parent-poms/webapps/01</url>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
+        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech/</url>
     </scm>
 
     <!-- #################### -->

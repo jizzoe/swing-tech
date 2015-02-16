@@ -98,9 +98,9 @@
     <!-- Source Control Management -->
     <!-- ########################## -->
     <scm>
-        <connection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM</connection>
-        <developerConnection>scm:svn:https://cooksarm.svn.sourceforge.net/svnroot/cooksarm/trunk/maven/ParentPOM</developerConnection>
-        <url>http://cooksarm.svn.sourceforge.net/viewvc/cooksarm/trunk/maven/ParentPOM</url>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
+        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech/</url>
     </scm>
 
     <!-- #################### -->
@@ -145,7 +145,7 @@
         <cobertura.packageLineRate>85</cobertura.packageLineRate>
 
         <!-- Build Tools Version -->
-        <buildtools.version>1.0.0.0000-SNAPSHOT</buildtools.version>
+        <buildtools.version>1.0.0.0000</buildtools.version>
     </properties>
 
     <!-- ##################################################################### -->
