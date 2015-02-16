@@ -202,10 +202,7 @@
   <!-- Maven Distribution Management -->
   <!-- ##############################-->
     <distributionManagement>
-        <site>
-          <id>cooksarm.sf.net</id>
-          <url>scp://shell.sourceforge.net/home/project-web/cooksarm/htdocs</url>
-        </site>
+
     </distributionManagement>
 
   <!-- ###################-->
