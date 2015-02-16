@@ -6,16 +6,16 @@
     <!-- order to deploy snapshots and releases. Ahh...the price of free -->
     <!-- ##################################################################### -->
     <parent>
-        <groupId>com.swing-tech.parent</groupId>
+        <groupId>com.swing-tech.platform.parent</groupId>
         <artifactId>swingtech-parent</artifactId>
-        <version>1.0</version>
+        <version>01</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.swing-tech.platform.parent</groupId>
     <artifactId>webapps</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>01-SNAPSHOT</version>
 
     <!-- #################### -->
     <!-- Project Information -->

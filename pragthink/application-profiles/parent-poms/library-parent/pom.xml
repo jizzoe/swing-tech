@@ -1,141 +1,141 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <!-- ##################################################################### -->
-    <!-- Define the parent POM. In this case, SwingTech uses sonatype parent -->
-    <!-- because we are using OSS Sonatype repository and it is required in -->
-    <!-- order to deploy snapshots and releases. Ahh...the price of free -->
-    <!-- ##################################################################### -->
-    <parent>
-        <groupId>com.swing-tech.platform.parent</groupId>
-        <artifactId>swingtech-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<!-- ##################################################################### -->
+	<!-- Define the parent POM. In this case, SwingTech uses sonatype parent -->
+	<!-- because we are using OSS Sonatype repository and it is required in -->
+	<!-- order to deploy snapshots and releases. Ahh...the price of free -->
+	<!-- ##################################################################### -->
+	<parent>
+		<groupId>com.swing-tech.platform.parent</groupId>
+		<artifactId>swingtech-parent</artifactId>
+		<version>01</version>
+	</parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.swing-tech.platform.parent</groupId>
-    <artifactId>library</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.swing-tech.platform.parent</groupId>
+	<artifactId>library</artifactId>
+	<packaging>pom</packaging>
+	<version>01-SNAPSHOT</version>
 
-    <!-- #################### -->
-    <!-- Project Information -->
-    <!-- #################### -->
-    <name>SwingTech</name>
-    <description>SwingTech wide configuration should be placed here and all SwingTech projects must inherit this POM.</description>
-    <inceptionYear>2010</inceptionYear>
-    <developers>
-        <developer>
-            <id>jrice</id>
-            <name>Joe Rice</name>
-            <email>jizzoerice@gmail.com</email>
-            <roles>
-                <role>Creator</role>
-            </roles>
-        </developer>
-    </developers>
+	<!-- #################### -->
+	<!-- Project Information -->
+	<!-- #################### -->
+	<name>SwingTech</name>
+	<description>SwingTech wide configuration should be placed here and all SwingTech projects must inherit this POM.</description>
+	<inceptionYear>2010</inceptionYear>
+	<developers>
+		<developer>
+			<id>jrice</id>
+			<name>Joe Rice</name>
+			<email>jizzoerice@gmail.com</email>
+			<roles>
+				<role>Creator</role>
+			</roles>
+		</developer>
+	</developers>
 
-    <!-- ######################### -->
-    <!-- Orginization Information -->
-    <!-- ######################### -->
-    <organization>
-    </organization>
+	<!-- ######################### -->
+	<!-- Orginization Information -->
+	<!-- ######################### -->
+	<organization>
+	</organization>
 
-    <!-- ########################## -->
-    <!-- Issue Management Resource -->
-    <!-- ########################## -->
-    <issueManagement>
-    </issueManagement>
+	<!-- ########################## -->
+	<!-- Issue Management Resource -->
+	<!-- ########################## -->
+	<issueManagement>
+	</issueManagement>
 
-    <!-- ########################## -->
-    <!-- Mailing Lists -->
-    <!-- ########################## -->
-    <mailingLists>
-        <mailingList>
-        </mailingList>
-    </mailingLists>
+	<!-- ########################## -->
+	<!-- Mailing Lists -->
+	<!-- ########################## -->
+	<mailingLists>
+		<mailingList>
+		</mailingList>
+	</mailingLists>
 
-    <!-- ########################## -->
-    <!-- Continuous Integration -->
-    <!-- ########################## -->
-    <ciManagement>
-    </ciManagement>
+	<!-- ########################## -->
+	<!-- Continuous Integration -->
+	<!-- ########################## -->
+	<ciManagement>
+	</ciManagement>
 
-    <!-- ########################## -->
-    <!-- Source Control Management -->
-    <!-- ########################## -->
-    <scm>
-        <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
-        <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
-        <url>https://github.com/jizzoe/swing-tech/</url>
-    </scm>
+	<!-- ########################## -->
+	<!-- Source Control Management -->
+	<!-- ########################## -->
+	<scm>
+		<connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
+		<developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
+		<url>https://github.com/jizzoe/swing-tech/</url>
+	</scm>
 
-    <!-- #################### -->
-    <!-- Build PreRequisites -->
-    <!-- #################### -->
-    <prerequisites>
-        <maven>2.2.1</maven>
-    </prerequisites>
+	<!-- #################### -->
+	<!-- Build PreRequisites -->
+	<!-- #################### -->
+	<prerequisites>
+		<maven>2.2.1</maven>
+	</prerequisites>
 
-    <!-- ############################################################## -->
-    <!-- Build Properties -->
-    <!-- Define here all the system wide properties that will be used -->
-    <!-- by the application. -->
-    <!-- ############################################################## -->
-    <properties>
-        <!-- OVERRIDE: Branch needs to be set by the child POM (EX) 1.0.0 -->
-        <branch>1.0.0</branch>
-    </properties>
+	<!-- ############################################################## -->
+	<!-- Build Properties -->
+	<!-- Define here all the system wide properties that will be used -->
+	<!-- by the application. -->
+	<!-- ############################################################## -->
+	<properties>
+		<!-- OVERRIDE: Branch needs to be set by the child POM (EX) 1.0.0 -->
+		<branch>1.0.0</branch>
+	</properties>
 
-    <!-- ##################################################################### -->
-    <!-- Define default version and scope of dependancies for SwingTech projects -->
-    <!-- ##################################################################### -->
-    <dependencyManagement>
-        <dependencies>
-        </dependencies>
-    </dependencyManagement>
+	<!-- ##################################################################### -->
+	<!-- Define default version and scope of dependancies for SwingTech projects -->
+	<!-- ##################################################################### -->
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
 
-    <!-- #################################################### -->
-    <!-- Global Dependencies -->
-    <!-- #################################################### -->
-    <dependencies>
-    </dependencies>
+	<!-- #################################################### -->
+	<!-- Global Dependencies -->
+	<!-- #################################################### -->
+	<dependencies>
+	</dependencies>
 
-    <!-- #################### -->
-    <!-- Build Phase Plugins & Plugin Management -->
-    <!-- #################### -->
-    <build>
-        <extensions>
-        </extensions>
+	<!-- #################### -->
+	<!-- Build Phase Plugins & Plugin Management -->
+	<!-- #################### -->
+	<build>
+		<extensions>
+		</extensions>
 
-        <!-- *** BUILD PLUGINS ** -->
+		<!-- *** BUILD PLUGINS ** -->
 
-        <plugins>
-        </plugins>
+		<plugins>
+		</plugins>
 
-        <pluginManagement>
-            <plugins>
-            </plugins>
-        </pluginManagement>
-    </build>
+		<pluginManagement>
+			<plugins>
+			</plugins>
+		</pluginManagement>
+	</build>
 
-    <!-- ############################################################## -->
-    <!-- Reporting Plugins -->
-    <!-- Standard Reports that all Swing-Tech projects should generate -->
-    <!-- when building site -->
-    <!-- ############################################################## -->
-    <reporting>
-        <plugins>
-        </plugins>
-    </reporting>
+	<!-- ############################################################## -->
+	<!-- Reporting Plugins -->
+	<!-- Standard Reports that all Swing-Tech projects should generate -->
+	<!-- when building site -->
+	<!-- ############################################################## -->
+	<reporting>
+		<plugins>
+		</plugins>
+	</reporting>
 
 
-    <!-- ########################## -->
-    <!-- Profiles -->
-    <!-- ########################## -->
-    <profiles>
+	<!-- ########################## -->
+	<!-- Profiles -->
+	<!-- ########################## -->
+	<profiles>
 
-        <profile>
-        </profile>
+		<profile>
+		</profile>
 
-    </profiles>
+	</profiles>
 </project>

@@ -5,16 +5,16 @@
   <!--  order to deploy snapshots and releases.  Ahh...the price of free    -->
   <!-- #####################################################################-->
     <parent>
-      <groupId>com.swing-tech.parent</groupId>
+      <groupId>com.swing-tech.platform.parent</groupId>
       <artifactId>swingtech-parent</artifactId>
-      <version>1.1</version>
+      <version>01</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.sourceforge.cooksarm.parent</groupId>
+    <groupId>com.swing-tech.platform.parent</groupId>
     <artifactId>swingtech-parent-site</artifactId>
     <packaging>pom</packaging>
-    <version>04-SNAPSHOT</version>
+    <version>01-SNAPSHOT</version>
 
   <!-- ####################-->
   <!-- Project Information -->
