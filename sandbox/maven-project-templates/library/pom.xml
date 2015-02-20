@@ -9,15 +9,15 @@
     <groupId>com.swing-tech.platform.template</groupId>
     <artifactId>simple-library-template</artifactId>
     <packaging>jar</packaging>
-    <version>RELEASE</version>
+    <version>1.0.0.0000-SNAPSHOT</version>
     
     <!-- ####################-->
     <!-- Project Information -->
     <!-- ####################-->
     <name>@replace-me@</name>
     <description>@replace-me@</description>
-    <url>http://cooksarm.sourceforge.@replace-me@net</url>
-    <inceptionYear>2016</inceptionYear>
+    <url>@replace-me@</url>
+    <inceptionYear>@replace-me@</inceptionYear>
     <developers>
         <developer>
             <id>@replace-me@</id>
