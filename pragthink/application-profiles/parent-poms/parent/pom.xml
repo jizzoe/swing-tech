@@ -8,7 +8,7 @@
 	<groupId>com.swing-tech.platform.parent</groupId>
 	<artifactId>swingtech-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>03-SNAPSHOT</version>
+	<version>03</version>
 
 	<!-- #################### -->
 	<!-- Project Information -->
@@ -99,7 +99,7 @@
 		<connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
 		<developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
 		<url>https://github.com/jizzoe/swing-tech/</url>
-		<tag>HEAD</tag>
+		<tag>swingtech-parent-03</tag>
 	</scm>
 
 	<!-- #################### -->
