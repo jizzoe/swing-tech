@@ -39,16 +39,17 @@ public class DupFileDriver {
 //		matchStrings = new ArrayList<String>();
 //		matchStrings.add("\\rated\\");
 
-		targetDupDirectory = new File("C:\\Users\\Ric\\Google Drive\\speeches\\economic\\keyes\\dups\\new\\test-old5\\dups");
-		targetPartDirectory = new File("C:\\Users\\Ric\\Google Drive\\speeches\\economic\\keyes\\dups\\new\\test-old5\\parts");
-		targetReportDirectory = new File("C:\\Users\\Ric\\Google Drive\\speeches\\economic\\keyes\\dups\\new\\test-old5");
+		targetDupDirectory = new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\dups\\new2\\dups");
+		targetPartDirectory = new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\dups\\new2\\parts");
+		targetReportDirectory = new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\dups\\new2");
 
 		searchDirectoryFiles = new ArrayList<File>();
-		searchDirectoryFiles.add(new File("C:\\Users\\Ric\\Google Drive\\speeches\\economic\\keyes\\dups\\new\\test-old5\\test1"));
-		searchDirectoryFiles.add(new File("C:\\Users\\Ric\\Google Drive\\speeches\\economic\\keyes\\dups\\new\\test-old5\\test2"));
+		searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism"));
+		searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\marx"));
 		
 		matchStrings = new ArrayList<String>();
-		matchStrings.add("\\keep\\");
+		matchStrings.add("\\rated\\");
+		matchStrings.add("\\projects\\");
 
 		moveDuplicates = true;
 		movePartFiles = true;
