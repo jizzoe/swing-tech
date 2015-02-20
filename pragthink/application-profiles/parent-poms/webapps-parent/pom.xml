@@ -14,7 +14,7 @@
     <groupId>com.swing-tech.platform.parent</groupId>
     <artifactId>webapps</artifactId>
     <packaging>pom</packaging>
-    <version>02-SNAPSHOT</version>
+    <version>02</version>
 
     <!-- #################### -->
     <!-- Project Information -->
@@ -66,7 +66,7 @@
         <connection>scm:git:https://github.com/jizzoe/swing-tech/</connection>
         <developerConnection>scm:git:https://github.com/jizzoe/swing-tech/</developerConnection>
         <url>https://github.com/jizzoe/swing-tech/</url>
-      <tag>HEAD</tag>
+      <tag>webapps-02</tag>
   </scm>
 
     <!-- #################### -->
