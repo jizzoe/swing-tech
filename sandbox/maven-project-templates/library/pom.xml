@@ -2,7 +2,7 @@
     <parent>
         <groupId>com.swing-tech.platform.parent</groupId>
         <artifactId>library</artifactId>
-        <version>03-SNAPSHOT</version>
+        <version>RELEASE</version>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>
