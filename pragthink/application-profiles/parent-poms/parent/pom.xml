@@ -142,7 +142,7 @@
 		<cobertura.packageLineRate>85</cobertura.packageLineRate>
 
 		<!-- Build Tools Version -->
-		<buildtools.version>1.0.0.0001</buildtools.version>
+		<buildtools.version>1.0.0.0002</buildtools.version>
 	</properties>
 
 	<!-- ##################################################################### -->
