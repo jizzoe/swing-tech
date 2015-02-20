@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.swing-tech.platform.parent</groupId>
+        <artifactId>webapps</artifactId>
+        <version>RELEASE</version>
+    </parent>
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.swing-tech.platform.template</groupId>
+    <artifactId>simple-webapp-template</artifactId>
+    <packaging>war</packaging>
+    <version>1.0.0.0000-SNAPSHOT</version>
+    
+    <!-- ####################-->
+    <!-- Project Information -->
+    <!-- ####################-->
+    <name>@replace-me@</name>
+    <description>@replace-me@</description>
+    <url>@replace-me@</url>
+    <inceptionYear>@replace-me@</inceptionYear>
+    <developers>
+        <developer>
+            <id>@replace-me@</id>
+            <name>@replace-me@</name>
+            <email>@replace-me@</email>
+            <roles>
+                <role>Creator</role>
+            </roles>
+        </developer>
+    </developers>
+    <!-- ####################-->
+    <!-- Properties -->
+    <!-- ####################-->
+    <properties>
+
+    </properties>
+
+
+    <!-- ####################-->
+    <!-- Source Control -->
+    <!-- ####################-->
+    <scm>
+        <connection>scm:git:https://github.com/jizzoe/swing-tech.git</connection>
+        <developerConnection>scm:svn:https://github.com/jizzoe/swing-tech.git</developerConnection>
+        <url>https://github.com/jizzoe/swing-tech.git</url>
+    </scm>
+
+    <!-- ####################-->
+    <!-- Dependencies -->
+    <!-- ####################-->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.5</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    
+    <!-- ####################-->
+    <!-- Build Phase Plugins -->
+    <!-- ####################-->
+    <build>
+ 		<finalName>Spring4MVCHelloWorld</finalName>
+    </build>
+</project>
