@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DupFileUtility {
 	public static String getFileNameWithoutExtension(File file) {
@@ -24,6 +26,21 @@ public class DupFileUtility {
 		fileName = file.getName().substring(0, fileExtensionIndex);
 		
 		return fileName;
+	}
+	
+	public static boolean matchesPattern(String targetString, String matchPattern) {
+		Pattern pattern = Pattern.compile(matchPattern);
+		Matcher matcher = pattern.matcher(targetString);
+		
+		if (matcher.matches()) {
+			return true;
+		}
+		
+		if (targetString.matches(matchPattern)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	public static String getFileNameExtension(File file) {
