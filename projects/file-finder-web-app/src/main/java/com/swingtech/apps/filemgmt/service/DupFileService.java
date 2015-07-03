@@ -14,12 +14,12 @@ import com.swingtech.apps.filemgmt.model.DupFile;
 import com.swingtech.apps.filemgmt.model.DupFileFinderResults;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
 
-public class DupFileDriver {
+public class DupFileService {
 	public static void hello(String[] args) throws Exception {
 //		tempTest();
 		tempTest3();
 		
-		DupFileDriver dupFileDriver = null;
+		DupFileService dupFileDriver = null;
 		List<File> searchDirectoryFiles = null;
 		File targetDupDirectory = null;
 		File targetPartDirectory = null;
@@ -54,7 +54,7 @@ public class DupFileDriver {
 		moveDuplicates = true;
 		movePartFiles = true;
 		
-		dupFileDriver = new DupFileDriver();
+		dupFileDriver = new DupFileService();
 		
 		dupFileDriver.findAndMoveAllDuplicates(searchDirectoryFiles, targetDupDirectory, targetPartDirectory, targetReportDirectory, matchStrings, moveDuplicates, movePartFiles);
 	}

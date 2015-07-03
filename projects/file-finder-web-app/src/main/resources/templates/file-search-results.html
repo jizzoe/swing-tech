@@ -118,13 +118,13 @@
 		              <thead>
 		                <tr>
 		                  <th>File Name</th>
-		                  <th>Full File Path</th>
+		                  <th>Full File Path - Joe</th>
 		                </tr>
 		              </thead>
 		              <tbody>
 		                <tr th:each="fileSearchMatch : ${searchResult.fileSearchMatches}">
-		                  <td th:text="${fileSearchMatch.matchFileName}"><a href="file:///C:\temp\software-engineering-radio\SE-Radio-Episode-221-Jez-Humble-on-Continuous-Delivery.mp3">game-image-1.jpg</a></td>
-		                  <td th:text="${fileSearchMatch.matchFileFullPath}">C:\git\swingtech\swing-tech\sandbox\honor-system-game\1.0.0\src\main\webapp\images\game-image-1.jpg</td>
+		                  <td th:inline="text"><a href="joe" th:href="@{'file:///'+${fileSearchMatch.matchFileFullPath}}">[[${fileSearchMatch.matchFileName}]]</a></td>
+		                  <td th:inline="text">[[${fileSearchMatch.matchFileFullPath}]]</td>
 		                </tr>
 		              </tbody>
 		            </table>

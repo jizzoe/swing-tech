@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.swingtech.apps.filemgmt.dao.FileSearchPreferencesDao;
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
-import com.swingtech.apps.filemgmt.model.FileSearchPreferencesDao;
 import com.swingtech.apps.filemgmt.model.FileSearchResult;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
 import com.swingtech.apps.filemgmt.model.SearchTermResults;

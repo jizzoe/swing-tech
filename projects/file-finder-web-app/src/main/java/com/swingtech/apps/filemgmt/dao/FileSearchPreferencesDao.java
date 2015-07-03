@@ -16,11 +16,12 @@
  * You should have received a copy of the GNU General Public License along with
  * SwingTech Software; If not, see <http://www.gnu.org/licenses/>.
  */
-package com.swingtech.apps.filemgmt.model;
+package com.swingtech.apps.filemgmt.dao;
 
 import java.io.File;
 import java.io.IOException;
 
+import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
 import com.swingtech.commons.util.JsonUtil;
 

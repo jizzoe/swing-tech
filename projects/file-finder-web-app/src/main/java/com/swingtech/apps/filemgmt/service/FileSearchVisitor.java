@@ -166,9 +166,6 @@ public class FileSearchVisitor implements FileVisitor<Path> {
 		FileSearchResult fileSearchResult = new FileSearchResult();
 		
 		fileSearchResult.setMatchFile(matchFile);
-		fileSearchResult.setMatchFileFullPath(matchFile.getAbsolutePath());
-		fileSearchResult.setMatchFileName(DupFileUtility.getFileName(matchFile));
-		fileSearchResult.setMatchFileNameWithoutExtension(DupFileUtility.getFileNameWithoutExtension(matchFile));
 		
 		return fileSearchResult;
 	}

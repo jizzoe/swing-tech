@@ -20,6 +20,8 @@ package com.swingtech.apps.filemgmt.model;
 
 import java.io.File;
 
+import com.swingtech.apps.filemgmt.util.DupFileUtility;
+
 /**
  * @DOCME
  *
@@ -29,6 +31,7 @@ import java.io.File;
 public class FileSearchResult {
 	private File matchFile = null;
 	private String matchFileName = null;
+	private String matchFileNameUrl = null;
 	private String matchFileNameWithoutExtension = null;
 	private String matchFileFullPath = null;
 	
@@ -43,6 +46,10 @@ public class FileSearchResult {
 	 */
 	public void setMatchFile(File matchFile) {
 		this.matchFile = matchFile;
+		this.matchFileFullPath = matchFile.getAbsolutePath();
+		this.matchFileName = DupFileUtility.getFileName(matchFile);
+		this.matchFileNameWithoutExtension = DupFileUtility.getFileNameWithoutExtension(matchFile);
+		this.matchFileNameUrl = this.matchFileFullPath.replaceAll("\\\\", "/");
 	}
 	/**
 	 * @return the matchFileName
@@ -51,10 +58,10 @@ public class FileSearchResult {
 		return matchFileName;
 	}
 	/**
-	 * @param matchFileName the matchFileName to set
+	 * @return the matchFileNameUrl
 	 */
-	public void setMatchFileName(String matchFileName) {
-		this.matchFileName = matchFileName;
+	public String getMatchFileNameUrl() {
+		return matchFileNameUrl;
 	}
 	/**
 	 * @return the matchFileNameWithoutExtension
@@ -63,22 +70,9 @@ public class FileSearchResult {
 		return matchFileNameWithoutExtension;
 	}
 	/**
-	 * @param matchFileNameWithoutExtension the matchFileNameWithoutExtension to set
-	 */
-	public void setMatchFileNameWithoutExtension(
-			String matchFileNameWithoutExtension) {
-		this.matchFileNameWithoutExtension = matchFileNameWithoutExtension;
-	}
-	/**
 	 * @return the matchFileFullPath
 	 */
 	public String getMatchFileFullPath() {
 		return matchFileFullPath;
-	}
-	/**
-	 * @param matchFileFullPath the matchFileFullPath to set
-	 */
-	public void setMatchFileFullPath(String matchFileFullPath) {
-		this.matchFileFullPath = matchFileFullPath;
 	}
 }
