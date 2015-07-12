@@ -3,8 +3,8 @@
  * 
  * Copyright (C) 2015 Joe Rice All rights reserved.
  * 
- * SwingTech Software is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by the Free
+ * SwingTech Software is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option) any
  * later version.
  * 
@@ -23,7 +23,8 @@ import java.io.IOException;
 
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
-import com.swingtech.commons.util.JsonUtil;
+import com.swingtech.apps.filemgmt.util.FileMgmtConstants;
+import com.swingtech.apps.filemgmt.util.JsonUtil;
 
 /**
  * @DOCME
@@ -32,36 +33,34 @@ import com.swingtech.commons.util.JsonUtil;
  *
  */
 public class FileSearchPreferencesDao {
-	private String preferencesFileDirectory = "/tmp/swingtech/filemgmt";
-	private String preferencesFileLocation = preferencesFileDirectory + "/fileSearchPreferences.json";
-	private File fileSearchPreferencesFile = new File(preferencesFileLocation);
-	
-	public FileSearchPreferences retrieveFileSearchPreferences() throws IOException {
-		FileSearchPreferences fileSearchPreferences = null;
-		
-		if (!fileSearchPreferencesFile.exists()) {
-			File preferencesFileDir = new File(preferencesFileDirectory);
-			preferencesFileDir.mkdirs();
-			
-			fileSearchPreferencesFile.createNewFile();
-			
-			return new FileSearchPreferences();
-		}
-		
-		fileSearchPreferences = JsonUtil.unmarshalJsonToObject(fileSearchPreferencesFile, FileSearchPreferences.class);
-		
-		return fileSearchPreferences;
-	}
-	
-	public void saveFileSearchPreferences(FileSearchPreferences fileSearchPreferences) throws IOException {
-		String fileSearchPreferencesString = null;
-		
-		if (!fileSearchPreferencesFile.exists()) {
-			fileSearchPreferencesFile.createNewFile();
-		}
-		
-		fileSearchPreferencesString = JsonUtil.marshalObjectToJson(fileSearchPreferences);
-		
-		DupFileUtility.writeToFile(fileSearchPreferencesFile, fileSearchPreferencesString);
-	}
+    private File preferencesFile = new File(FileMgmtConstants.FILE_SEARCH_PREFERENCES_FILE_LOCATION);
+
+    public FileSearchPreferences retrieveFileSearchPreferences() throws IOException {
+        FileSearchPreferences fileSearchPreferences = null;
+
+        if (!preferencesFile.exists()) {
+            File preferencesFileDir = new File(FileMgmtConstants.FILE_MGMT_HOME_DIR);
+            preferencesFileDir.mkdirs();
+
+            preferencesFile.createNewFile();
+
+            return new FileSearchPreferences();
+        }
+
+        fileSearchPreferences = JsonUtil.unmarshalJsonToObject(preferencesFile, FileSearchPreferences.class);
+
+        return fileSearchPreferences;
+    }
+
+    public void saveFileSearchPreferences(FileSearchPreferences fileSearchPreferences) throws IOException {
+        String fileSearchPreferencesString = null;
+
+        if (!preferencesFile.exists()) {
+            preferencesFile.createNewFile();
+        }
+
+        fileSearchPreferencesString = JsonUtil.marshalObjectToJson(fileSearchPreferences);
+
+        DupFileUtility.writeToFile(preferencesFile, fileSearchPreferencesString);
+    }
 }

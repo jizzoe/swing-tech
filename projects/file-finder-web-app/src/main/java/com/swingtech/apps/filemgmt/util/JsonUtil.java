@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License along with
  * SwingTech Cooks Arm; If not, see <http://www.gnu.org/licenses/>.
  */
-package com.swingtech.commons.util;
+package com.swingtech.apps.filemgmt.util;
 
 import java.io.File;
 import java.net.URL;

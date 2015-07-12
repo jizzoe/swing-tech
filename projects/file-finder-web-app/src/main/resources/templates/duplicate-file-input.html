@@ -64,19 +64,40 @@
           <div>
           	<h2 class="sub-header">Find Duplicates</h2>
           	<form action="/find-duplicates">
-	          	<b>Search Directories</b>
-	          	<input name="searchDirectories" class="form-control" value="c:\Joe" type="text"/>
-	          	<input name="searchDirectories" class="form-control" value="c:\Joe" type="text"/>
+          		<b>Search Directories</b>
+          		<span th:each="defaultSearchDirectoryName : ${dupFilePreferences.defaultSearchDirectoryNames}">
+          			<input name="searchDirectories" class="form-control" th:value="${defaultSearchDirectoryName}" type="text"/>
+          		</span>
 	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
 	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
 	          	<br/>
-	          	<b>Search Terms</b>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<input name="searchTerms" class="form-control" value="" type="text"/>
+          		<b>Target Duplicate Files Directory</b>
+	          	<input name="targetDupDirectory" class="form-control" th:value="${dupFilePreferences.defaultTargetDupDirectory}" type="text"/>
 	          	<br/>
-	          	<input name="submit" type="submit" value="Search"/>
+          		<b>Target Part Files Directory</b>
+	          	<input name="targetPartDirectory" class="form-control" th:value="${dupFilePreferences.defaultTargetPartDirectory}" type="text"/>
+	          	<br/>
+          		<b>Folder Match Strings</b>
+          		<span th:each="defaultFolderMatchString : ${dupFilePreferences.defaultFolderMatchStrings}">
+          			<input name="folderMatchStrings" class="form-control" th:value="${defaultFolderMatchString}" type="text"/>
+          		</span>
+	          	<input name="folderMatchStrings" class="form-control" value="" type="text"/>
+	          	<input name="folderMatchStrings" class="form-control" value="" type="text"/>
+	          	<input name="submit" type="submit" value="Search" data-toggle="modal" data-target="#myModal"/>&nbsp;&nbsp;
+	          	<input name="searchFileSystem" type="checkbox" value="true"/>Search File System
 	      	</form>
+	      
+  <!-- sample modal content -->
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <img src="img/wait_animation.gif"/>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
  		  </div>
         </div>
       </div>

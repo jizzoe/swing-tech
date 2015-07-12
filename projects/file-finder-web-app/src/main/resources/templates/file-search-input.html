@@ -64,6 +64,12 @@
           <div>
           	<h2 class="sub-header">Search Files</h2>
           	<form action="/search-files">
+	          	<b>Search Terms</b>
+	          	<input name="searchTerms" class="form-control" type="text"/>
+	          	<input name="searchTerms" class="form-control" type="text"/>
+	          	<input name="searchTerms" class="form-control" type="text"/>
+	          	<input name="searchTerms" class="form-control" type="text"/>
+	          	<br/>
           		<b>Search Directories</b>
           		<span th:each="defaultSearchDirectoryName : ${fileSearchPreferences.defaultSearchDirectoryNames}">
           			<input name="searchDirectories" class="form-control" th:value="${defaultSearchDirectoryName}" type="text"/>
@@ -71,13 +77,8 @@
 	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
 	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
 	          	<br/>
-	          	<b>Search Terms</b>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<input name="searchTerms" class="form-control" type="text"/>
-	          	<br/>
-	          	<input name="submit" type="submit" value="Search" data-toggle="modal" data-target="#myModal"/>
+	          	<input name="submit" type="submit" value="Search" data-toggle="modal" data-target="#myModal"/>&nbsp;&nbsp;
+	          	<input name="searchFileSystem" type="checkbox" value="true"/>Search File System
 	      	</form>
 
   <!-- sample modal content -->
