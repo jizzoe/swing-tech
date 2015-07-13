@@ -79,48 +79,12 @@ public class FileSearchVisitor implements FileVisitor<Path> {
                 continue;
             }
 
-            if (this.fileMatchesPattern(file, searchTermPattern)) {
+            if (DupFileUtility.fileMatchesPattern(file, searchTermPattern, false)) {
                 this.processSearchMatch(searchTermPattern, file);
             }
         }
 
         return FileVisitResult.CONTINUE;
-    }
-
-    private boolean fileMatchesPattern(File file, String searchTermPattern) {
-        boolean matches = false;
-        String modifiedSearchTermPattern = null;
-        String fileName = null;
-        String fileNameWithoutExtension = null;
-
-        fileName = DupFileUtility.getFileName(file);
-        fileNameWithoutExtension = DupFileUtility.getFileNameWithoutExtension(file);
-
-        modifiedSearchTermPattern = searchTermPattern.trim();
-
-        if (modifiedSearchTermPattern.startsWith("\"") && modifiedSearchTermPattern.endsWith("\"")) {
-
-            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("\"", "");
-
-            matches = fileNameWithoutExtension.equalsIgnoreCase(modifiedSearchTermPattern);
-
-            return matches;
-        }
-
-        if (modifiedSearchTermPattern.startsWith("'") && modifiedSearchTermPattern.endsWith("'")) {
-            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("\"", "");
-        }
-
-        if (modifiedSearchTermPattern.contains("~")) {
-            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("~", "[\\S]*");
-        }
-        else {
-            modifiedSearchTermPattern = "[\\S]*" + modifiedSearchTermPattern + "[\\S]*";
-        }
-
-        matches = DupFileUtility.matchesPattern(fileName, modifiedSearchTermPattern);
-
-        return matches;
     }
 
     @Override

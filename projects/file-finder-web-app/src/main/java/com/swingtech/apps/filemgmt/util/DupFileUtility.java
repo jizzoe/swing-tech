@@ -16,6 +16,7 @@ public class DupFileUtility {
     private final static long MEGA_BYTES = KILO_BYTES * KILO_BYTES;
     private final static long GIGA_BYTES = MEGA_BYTES * KILO_BYTES;
     private final static long TERRA_BYTES = GIGA_BYTES * KILO_BYTES;
+    private final static String WILDCARD_REGEX_PATTERN = "[\\S\\s]*";
 
     public static String getFileMimeTypeFromFileExtension(String fileExtension) {
         Map<String, String> fileExtensionToMapTypeMap = new HashMap<String, String>();
@@ -73,9 +74,53 @@ public class DupFileUtility {
         return file.getName();
     }
 
-    public static boolean matchesPattern(String targetString, String matchPattern) {
-        Pattern pattern = Pattern.compile(matchPattern);
-        Matcher matcher = pattern.matcher(targetString);
+    public static boolean fileMatchesPattern(File file, String searchTermPattern, boolean caseSensitive) {
+        boolean matches = false;
+        String modifiedSearchTermPattern = null;
+        String fileName = null;
+        String fileNameWithoutExtension = null;
+
+        fileName = DupFileUtility.getFileName(file);
+        fileNameWithoutExtension = DupFileUtility.getFileNameWithoutExtension(file);
+
+        modifiedSearchTermPattern = searchTermPattern.trim();
+
+        if (modifiedSearchTermPattern.startsWith("\"") && modifiedSearchTermPattern.endsWith("\"")) {
+
+            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("\"", "");
+
+            matches = fileNameWithoutExtension.equalsIgnoreCase(modifiedSearchTermPattern);
+
+            return matches;
+        }
+
+        if (modifiedSearchTermPattern.startsWith("'") && modifiedSearchTermPattern.endsWith("'")) {
+            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("\"", "");
+        }
+
+        if (modifiedSearchTermPattern.contains("~")) {
+            modifiedSearchTermPattern = modifiedSearchTermPattern.replace("~", WILDCARD_REGEX_PATTERN);
+        }
+        else {
+            modifiedSearchTermPattern = WILDCARD_REGEX_PATTERN + modifiedSearchTermPattern + WILDCARD_REGEX_PATTERN;
+        }
+
+        matches = matchesPattern(fileName, modifiedSearchTermPattern, caseSensitive);
+
+        return matches;
+    }
+
+    public static boolean matchesPattern(String targetString, String matchPattern, boolean caseSensitive) {
+        Pattern pattern = null;
+        Matcher matcher = null;
+
+        if (caseSensitive) {
+            pattern = Pattern.compile(matchPattern);
+        }
+        else {
+            pattern = Pattern.compile(matchPattern, Pattern.CASE_INSENSITIVE);
+        }
+        matcher = pattern.matcher(targetString);
 
         if (matcher.matches()) {
             return true;
