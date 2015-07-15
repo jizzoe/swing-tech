@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.swingtech.apps.filemgmt.util.DupFileUtility;
+
 public class DupFileFinderResults extends BaseResults {
     private int numDup;
     private long dupFilesSize;
@@ -121,5 +123,12 @@ public class DupFileFinderResults extends BaseResults {
 
     public void setPartsErrorTryingToMove(Map<File, File> partsErrorTryingToMove) {
         this.partsErrorTryingToMove = partsErrorTryingToMove;
+    }
+
+    /**
+     * @return the dupFilesSizeDisplay
+     */
+    public String getDupFilesSizeDisplay() {
+        return DupFileUtility.getBinarySizeDisplayString(dupFilesSize);
     }
 }

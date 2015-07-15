@@ -15,6 +15,7 @@ import com.swingtech.apps.filemgmt.dao.FileIndexDao;
 import com.swingtech.apps.filemgmt.dao.FileSearchPreferencesDao;
 import com.swingtech.apps.filemgmt.dao.impl.file.FileIndexhDaoImplFileBased;
 import com.swingtech.apps.filemgmt.model.FileEntity;
+import com.swingtech.apps.filemgmt.model.FileLocationEntity;
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.model.FileSearchResult;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
@@ -71,6 +72,8 @@ public class FileSearchService {
         File directoryToMoveFile = null;
         File existingFile = null;
         File moveToFile = null;
+        FileLocationEntity existingFileEntity = null;
+        FileLocationEntity moveToFileEntity = null;
         boolean renameSuccessful;
         Timer timer = new Timer();
         String fileName = null;
@@ -102,41 +105,43 @@ public class FileSearchService {
 
         for (String fileNameToBeMoved : fileNamesToMove) {
             existingFile = new File(fileNameToBeMoved);
+            existingFileEntity = new FileLocationEntity(existingFile);
 
-            fileName = DupFileUtility.getFileName(existingFile);
+            fileName = existingFileEntity.getFileName();
 
             moveToFile = new File(directoryToMoveFile.getAbsolutePath() + "\\" + fileName);
+            moveToFileEntity = new FileLocationEntity(moveToFile);
 
             moveToFileResults.setNumFilesProcessed(moveToFileResults.getNumFilesProcessed() + 1);
 
-            if (!existingFile.exists()) {
-                errors.put(fileNameToBeMoved, "File to move, '" + existingFile.getAbsolutePath() + "' does not exist");
-                moveToFileResults.getFilesNotMoved().put(existingFile, moveToFile);
+            if (!existingFileEntity.getFile().exists()) {
+                errors.put(fileNameToBeMoved, "File to move, '" + existingFileEntity.getAbsolutePath()
+                        + "' does not exist");
+                moveToFileResults.getFilesNotMoved().put(existingFileEntity, moveToFileEntity);
                 continue;
             }
 
             try {
-                renameSuccessful = existingFile.renameTo(moveToFile);
+                renameSuccessful = existingFileEntity.getFile().renameTo(moveToFileEntity.getFile());
             }
             catch (Exception e) {
-                errors.put(
-                        fileNameToBeMoved,
-                        "Error trying to rename file from '" + existingFile.getAbsolutePath() + "' to '"
-                                + moveToFile.getAbsolutePath() + "'.  Error:  " + e.getClass().getName() + ":  "
+                errors.put(fileNameToBeMoved,
+                        "Error trying to rename file from '" + existingFileEntity.getAbsolutePath() + "' to '"
+                                + moveToFileEntity.getAbsolutePath() + "'.  Error:  " + e.getClass().getName() + ":  "
                                 + e.getMessage());
-                moveToFileResults.getFilesNotMoved().put(existingFile, moveToFile);
+                moveToFileResults.getFilesNotMoved().put(existingFileEntity, moveToFileEntity);
                 continue;
             }
 
             if (!renameSuccessful) {
                 errors.put(fileNameToBeMoved,
-                        "Unknown Error trying to rename file from '" + existingFile.getAbsolutePath() + "' to '"
-                                + moveToFile.getAbsolutePath() + "'.  The return operation returned false");
-                moveToFileResults.getFilesNotMoved().put(existingFile, moveToFile);
+                        "Unknown Error trying to rename file from '" + existingFileEntity.getAbsolutePath() + "' to '"
+                                + moveToFileEntity.getAbsolutePath() + "'.  The return operation returned false");
+                moveToFileResults.getFilesNotMoved().put(existingFileEntity, moveToFileEntity);
                 continue;
             }
 
-            moveToFileResults.getFilesMoved().put(existingFile, moveToFile);
+            moveToFileResults.getFilesMoved().put(existingFileEntity, moveToFileEntity);
         }
 
         timer.stopTiming();
@@ -346,8 +351,8 @@ public class FileSearchService {
         reportBuffer.append("\n******Printing " + moveFilesResults.getFilesMoved().size()
                 + " Part files that were moved*****");
 
-        for (File originalFile : moveFilesResults.getFilesMoved().keySet()) {
-            File renameToFile = moveFilesResults.getFilesMoved().get(originalFile);
+        for (FileLocationEntity originalFile : moveFilesResults.getFilesMoved().keySet()) {
+            FileLocationEntity renameToFile = moveFilesResults.getFilesMoved().get(originalFile);
             reportBuffer.append("\n   From: " + originalFile.getAbsolutePath() + "      to: "
                     + renameToFile.getAbsolutePath());
         }
@@ -356,8 +361,8 @@ public class FileSearchService {
         reportBuffer.append("\n******Printing " + moveFilesResults.getFilesNotMoved().size()
                 + " Part files that were NOT moved*****");
 
-        for (File originalFile : moveFilesResults.getFilesNotMoved().keySet()) {
-            File renameToFile = moveFilesResults.getFilesNotMoved().get(originalFile);
+        for (FileLocationEntity originalFile : moveFilesResults.getFilesNotMoved().keySet()) {
+            FileLocationEntity renameToFile = moveFilesResults.getFilesNotMoved().get(originalFile);
             reportBuffer.append("\n   From: " + originalFile.getAbsolutePath() + "      to: "
                     + renameToFile.getAbsolutePath());
         }
@@ -396,7 +401,7 @@ public class FileSearchService {
         System.out.println("Just pulled the preferences BEFORE save.  Here's values");
         System.out.println("  defaultTargetDupDirectory:  " + fileSearchPreferences.getDefaultMoveToDirectory());
         System.out
-                .println("  # of default directories:  " + fileSearchPreferences.getDefaultSearchDirectories().size());
+        .println("  # of default directories:  " + fileSearchPreferences.getDefaultSearchDirectories().size());
 
         fileSearchPreferences.setDefaultMoveToDirectory("C:\\git\\swingtech\\swing-tech");
 
@@ -412,7 +417,7 @@ public class FileSearchService {
         System.out.println("Just pulled the preferences AFTER save.  Here's values");
         System.out.println("  defaultTargetDupDirectory:  " + fileSearchPreferences.getDefaultMoveToDirectory());
         System.out
-                .println("  # of default directories:  " + fileSearchPreferences.getDefaultSearchDirectories().size());
+        .println("  # of default directories:  " + fileSearchPreferences.getDefaultSearchDirectories().size());
 
     }
 
@@ -424,13 +429,13 @@ public class FileSearchService {
         MoveFilesResults moveToFileResults = null;
 
         moveFiles
-                .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - cute young girl for an older black man Pt 4 7.mp4");
+        .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - cute young girl for an older black man Pt 4 7.mp4");
         moveFiles
-                .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - cute young girl for an older black man Pt 7 7.mp4");
+        .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - cute young girl for an older black man Pt 7 7.mp4");
         moveFiles
-                .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - Kitty plays with a black guy.mp4");
+        .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - Kitty plays with a black guy.mp4");
         moveFiles
-                .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - Maureen McCormick s Cousin.mp4");
+        .add("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism\\youp\\new\\new21\\YouPorn - Maureen McCormick s Cousin.mp4");
 
         System.out.println("Moving " + moveFiles.size() + " to " + moveToDirector);
 

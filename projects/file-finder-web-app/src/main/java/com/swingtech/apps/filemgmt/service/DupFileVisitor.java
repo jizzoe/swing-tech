@@ -52,10 +52,10 @@ public class DupFileVisitor implements FileVisitor<Path> {
         // file.getName().indexOf("."));
         fullFileName = file.getAbsolutePath();
 
-        dupFileFinderResults.setTotalFilesSize(dupFileFinderResults.getTotalFilesSize() + file.getTotalSpace());
+        dupFileFinderResults.setTotalFilesSize(dupFileFinderResults.getTotalFilesSize() + file.length());
         dupFileFinderResults.setNumFilesProcessed(dupFileFinderResults.getNumFilesProcessed() + 1);
 
-        if (index % 10 == 0) {
+        if (index % 1000 == 0) {
             System.out.println("Processing row " + index);
         }
 
@@ -74,7 +74,7 @@ public class DupFileVisitor implements FileVisitor<Path> {
 
     public void processPartFile(File file) {
         dupFileFinderResults.getPartFiles().add(file);
-        dupFileFinderResults.setTotalPartFileSize(dupFileFinderResults.getTotalPartFileSize() + file.getTotalSpace());
+        dupFileFinderResults.setTotalPartFileSize(dupFileFinderResults.getTotalPartFileSize() + file.length());
         dupFileFinderResults.setNumPartFiles(dupFileFinderResults.getNumPartFiles() + 1);
     }
 
@@ -92,7 +92,7 @@ public class DupFileVisitor implements FileVisitor<Path> {
         DupFile dupFile = null;
 
         dupFileFinderResults.setNumDup(dupFileFinderResults.getNumDup() + 1);
-        dupFileFinderResults.setDupFilesSize(dupFileFinderResults.getDupFilesSize() + file.getTotalSpace());
+        dupFileFinderResults.setDupFilesSize(dupFileFinderResults.getDupFilesSize() + file.length());
 
         if (dupFileFinderResults.getDupFiles().containsKey(fileName)) {
             dupFile = dupFileFinderResults.getDupFiles().get(fileName);
@@ -108,12 +108,12 @@ public class DupFileVisitor implements FileVisitor<Path> {
             File previousDupFile = dupFileFinderResults.getAllFilesNames().get(fileName);
             dupFile.getDupFileLocations().add(previousDupFile);
             dupFile.setNumDups(dupFile.getNumDups() + 1);
-            dupFile.setTotalDupFileSize(dupFile.getTotalDupFileSize() + file.getTotalSpace());
+            dupFile.setTotalDupFileSize(dupFile.getTotalDupFileSize() + file.length());
         }
 
         dupFile.setNumDups(dupFile.getNumDups() + 1);
         dupFile.getDupFileLocations().add(file);
-        dupFile.setTotalDupFileSize(dupFile.getTotalDupFileSize() + file.getTotalSpace());
+        dupFile.setTotalDupFileSize(dupFile.getTotalDupFileSize() + file.length());
     }
 
     @Override

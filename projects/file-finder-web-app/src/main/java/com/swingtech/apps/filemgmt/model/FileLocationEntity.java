@@ -19,7 +19,10 @@
 package com.swingtech.apps.filemgmt.model;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.swingtech.apps.filemgmt.util.DupFileUtility;
 
 /**
  * @DOCME
@@ -29,10 +32,19 @@ import java.net.URL;
  */
 public class FileLocationEntity {
     private String fileName;
+    private String fileNameWithoutExtension;
+    private String fileExtension;
     private String absolutePath;
     private File file;
     private long fileSize;
     private URL url;
+
+    public FileLocationEntity() {
+    }
+
+    public FileLocationEntity(File file) {
+        this.setFile(file);
+    }
 
     /**
      * @return the fileName
@@ -62,6 +74,16 @@ public class FileLocationEntity {
      */
     public void setFile(File file) {
         this.file = file;
+        this.setAbsolutePath(file.getAbsolutePath());
+        this.setFileName(DupFileUtility.getFileName(file));
+        this.setFileExtension(DupFileUtility.getFileNameExtension(file));
+        this.setFileNameWithoutExtension(DupFileUtility.getFileNameWithoutExtension(file));
+        this.setFileSize(file.length());
+        try {
+            this.setUrl(file.toURI().toURL());
+        }
+        catch (MalformedURLException e) {
+        }
     }
 
     /**
@@ -107,6 +129,36 @@ public class FileLocationEntity {
      */
     public void setUrl(URL url) {
         this.url = url;
+    }
+
+    /**
+     * @return the fileNameWithoutExtension
+     */
+    public String getFileNameWithoutExtension() {
+        return fileNameWithoutExtension;
+    }
+
+    /**
+     * @param fileNameWithoutExtension
+     *            the fileNameWithoutExtension to set
+     */
+    public void setFileNameWithoutExtension(String fileNameWithoutExtension) {
+        this.fileNameWithoutExtension = fileNameWithoutExtension;
+    }
+
+    /**
+     * @return the fileExtension
+     */
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    /**
+     * @param fileExtension
+     *            the fileExtension to set
+     */
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
     }
 
 }

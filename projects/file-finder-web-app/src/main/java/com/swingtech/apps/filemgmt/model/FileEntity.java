@@ -121,7 +121,7 @@ public class FileEntity {
         }
 
         for (FileLocationEntity fileLocation : fileLocations) {
-            totalFileSize = totalFileSize + fileLocation.getFile().getTotalSpace();
+            totalFileSize = totalFileSize + fileLocation.getFile().length();
         }
 
         return totalFileSize;

@@ -36,11 +36,9 @@ public class BaseResults {
     private int numFilesProcessed;
     private int numErrors;
     private long totalFilesSize;
-    private String totalFileSizeDisplayString = null;
     private long totalNumDirectories;
     private int numPartFiles;
     private long totalPartFileSize;
-    private String totalPartFileSizeDisplayString = null;
     private Date dateTestRanStarted = null;
     private Date dateTestRanEnded = null;
     private String dateTestRanStartedDisplayString = null;
@@ -110,7 +108,6 @@ public class BaseResults {
      */
     public void setTotalFilesSize(long totalFilesSize) {
         this.totalFilesSize = totalFilesSize;
-        this.totalFileSizeDisplayString = DupFileUtility.getBinarySizeDisplayString(this.totalFilesSize);
     }
 
     /**
@@ -156,7 +153,6 @@ public class BaseResults {
      */
     public void setTotalPartFileSize(long totalPartFileSize) {
         this.totalPartFileSize = totalPartFileSize;
-        this.totalPartFileSizeDisplayString = DupFileUtility.getBinarySizeDisplayString(this.totalPartFileSize);
     }
 
     /**
@@ -305,14 +301,13 @@ public class BaseResults {
      * @return the totalFileSizeDisplayString
      */
     public String getTotalFileSizeDisplayString() {
-        return totalFileSizeDisplayString;
+        return DupFileUtility.getBinarySizeDisplayString(totalFilesSize);
     }
 
     /**
      * @return the totalPartFileSizeDisplayString
      */
     public String getTotalPartFileSizeDisplayString() {
-        return totalPartFileSizeDisplayString;
+        return DupFileUtility.getBinarySizeDisplayString(totalPartFileSize);
     }
-
 }

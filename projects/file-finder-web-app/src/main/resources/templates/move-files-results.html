@@ -101,12 +101,14 @@
 		            <table class="table table-striped">
 		              <thead>
 		                <tr>
-		                  <th>From File</th>
-		                  <th>To File</th>
+		                  <th>File Name</th>
+		                  <th>From Dir</th>
+		                  <th>To Dir</th>
 		                </tr>
 		              </thead>
 		              <tbody>
 		                <tr th:each="file : ${moveFileResults.filesMoved}">
+		                  <td th:text="${file.key.fileName}">===</td>
 		                  <td th:text="${file.key.absolutePath}">===</td>
 		                  <td th:text="${file.value.absolutePath}">---</td>
 		                </tr>
@@ -119,12 +121,14 @@
 		            <table class="table table-striped">
 		              <thead>
 		                <tr>
-		                  <th>From File</th>
-		                  <th>To File</th>
+		                  <th>File Name</th>
+		                  <th>From Dir</th>
+		                  <th>To Dir</th>
 		                </tr>
 		              </thead>
 		              <tbody>
 		                <tr th:each="file : ${moveFileResults.filesNotMoved}">
+		                  <td th:text="${file.key.fileName}">===</td>
 		                  <td th:text="${file.key.absolutePath}">===</td>
 		                  <td th:text="${file.value.absolutePath}">---</td>
 		                </tr>

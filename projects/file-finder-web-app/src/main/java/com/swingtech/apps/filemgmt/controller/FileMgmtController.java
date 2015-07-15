@@ -111,22 +111,38 @@ public class FileMgmtController {
             @RequestParam(value = "searchDirectories", required = false) List<String> searchDirectories,
             @RequestParam(value = "targetDupDirectory", required = false) String targetDupDirectory,
             @RequestParam(value = "targetPartDirectory", required = false) String targetPartDirectory,
+            @RequestParam(value = "targetReportDirectory", required = false) String targetReportDirectory,
             @RequestParam(value = "folderMatchStrings", required = false) List<String> folderMatchStrings,
-            @RequestParam(value = "searchFileSystem", required = false) Boolean searchFileSystem, Model model) {
+            @RequestParam(value = "searchFileSystem", required = false) Boolean searchFileSystem,
+            @RequestParam(value = "moveDuplicates", required = false) Boolean moveDuplicates,
+            @RequestParam(value = "movePartFiles", required = false) Boolean movePartFiles, Model model) {
         DupFileFinderResults dupFileFinderResults = null;
 
         if (searchFileSystem == null) {
             searchFileSystem = false;
         }
 
-        this.tempPrintDupFileInputs(searchDirectories, targetDupDirectory, targetPartDirectory, folderMatchStrings,
-                searchFileSystem);
+        if (moveDuplicates == null) {
+            moveDuplicates = false;
+        }
+
+        if (movePartFiles == null) {
+            movePartFiles = false;
+        }
+
+        this.tempPrintDupFileInputs(searchDirectories, targetDupDirectory, targetPartDirectory, targetReportDirectory,
+                folderMatchStrings, searchFileSystem, moveDuplicates, movePartFiles);
 
         try {
             dupFileFinderResults = dupFileService.findAndMoveAllDuplicatesWithStrings(searchDirectories,
-                    targetDupDirectory, targetPartDirectory, folderMatchStrings, false, false, searchFileSystem);
+                    targetDupDirectory, targetPartDirectory, folderMatchStrings, moveDuplicates, movePartFiles,
+                    searchFileSystem);
 
-            this.tempPrintDupFileResults(dupFileFinderResults);
+            if (targetReportDirectory == null || targetReportDirectory.trim().isEmpty()) {
+                targetReportDirectory = null;
+            }
+
+            this.printDupFileResults(dupFileFinderResults, targetReportDirectory);
         }
         catch (Exception e) {
             // TODO Auto-generated catch block
@@ -195,7 +211,8 @@ public class FileMgmtController {
     }
 
     private void tempPrintDupFileInputs(List<String> searchDirectories, String targetDupDirectory,
-            String targetPartDirectory, List<String> folderMatchStrings, Boolean searchFileSystem) {
+            String targetPartDirectory, String targetReportDirectory, List<String> folderMatchStrings,
+            Boolean searchFileSystem, Boolean moveDuplicates, boolean movePartFiles) {
         System.out.println("\n\n\nIncoming Search Directories");
 
         for (String searchDirectory : searchDirectories) {
@@ -206,6 +223,8 @@ public class FileMgmtController {
 
         System.out.println("\nIncoming Target Parts Directory:  " + targetPartDirectory);
 
+        System.out.println("\nIncoming Target Report Directory:  " + targetReportDirectory);
+
         System.out.println("\nIncoming Folder Match  Strings");
 
         for (String searchTerm : folderMatchStrings) {
@@ -213,6 +232,10 @@ public class FileMgmtController {
         }
 
         System.out.println("\nsearchFileSystem:  " + searchFileSystem);
+
+        System.out.println("\nmoveDuplicates:  " + moveDuplicates);
+
+        System.out.println("\nmovePartFiles:  " + movePartFiles);
 
         System.out.println("\n\n\n");
     }
@@ -256,8 +279,9 @@ public class FileMgmtController {
         fileSearchService.printMoveFileResults(moveFilesResults, null);
     }
 
-    private void tempPrintDupFileResults(DupFileFinderResults dupFileFinderResults) throws Exception {
-        dupFileService.printResults(dupFileFinderResults, null);
+    private void printDupFileResults(DupFileFinderResults dupFileFinderResults, String targetReportDirectory)
+            throws Exception {
+        dupFileService.printResults(dupFileFinderResults, new File(targetReportDirectory));
     }
 
 }

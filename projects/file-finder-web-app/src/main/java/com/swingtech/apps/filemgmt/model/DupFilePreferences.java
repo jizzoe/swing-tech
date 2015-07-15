@@ -32,6 +32,7 @@ public class DupFilePreferences {
     List<String> defaultSearchDirectoryNames = new ArrayList<String>();
     String defaultTargetDupDirectory = null;
     String defaultTargetPartDirectory = null;
+    String defaultReportDirectory = null;
     List<String> defaultFolderMatchStrings = new ArrayList<String>();
 
     /**
@@ -109,6 +110,21 @@ public class DupFilePreferences {
      */
     public void setDefaultSearchDirectoryNames(List<String> defaultSearchDirectoryNames) {
         this.defaultSearchDirectoryNames = defaultSearchDirectoryNames;
+    }
+
+    /**
+     * @return the defaultReportDirectory
+     */
+    public String getDefaultReportDirectory() {
+        return defaultReportDirectory;
+    }
+
+    /**
+     * @param defaultReportDirectory
+     *            the defaultReportDirectory to set
+     */
+    public void setDefaultReportDirectory(String defaultReportDirectory) {
+        this.defaultReportDirectory = defaultReportDirectory;
     }
 
 }

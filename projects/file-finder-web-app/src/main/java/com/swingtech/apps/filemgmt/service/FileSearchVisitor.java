@@ -40,10 +40,8 @@ public class FileSearchVisitor implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
-        FileLocationEntity fileLocationEntity = new FileLocationEntity();
         File file = path.toFile();
-
-        fileLocationEntity.setFile(file);
+        FileLocationEntity fileLocationEntity = new FileLocationEntity(file);
 
         return this.visitFile(fileLocationEntity);
     }
@@ -63,7 +61,8 @@ public class FileSearchVisitor implements FileVisitor<Path> {
 
         fullFileName = file.getAbsolutePath();
 
-        fileSearchResults.setTotalFilesSize(fileSearchResults.getTotalFilesSize() + fileLocationEntity.getFileSize());
+        fileSearchResults.setTotalFilesSize(fileSearchResults.getTotalFilesSize()
+                + fileLocationEntity.getFile().length());
         fileSearchResults.setNumFilesProcessed(fileSearchResults.getNumFilesProcessed() + 1);
 
         if (index % 1000 == 0) {

@@ -77,6 +77,9 @@
           		<b>Target Part Files Directory</b>
 	          	<input name="targetPartDirectory" class="form-control" th:value="${dupFilePreferences.defaultTargetPartDirectory}" type="text"/>
 	          	<br/>
+          		<b>Target Report Directory</b>
+	          	<input name="targetReportDirectory" class="form-control" th:value="${dupFilePreferences.defaultReportDirectory}" type="text"/>
+	          	<br/>
           		<b>Folder Match Strings</b>
           		<span th:each="defaultFolderMatchString : ${dupFilePreferences.defaultFolderMatchStrings}">
           			<input name="folderMatchStrings" class="form-control" th:value="${defaultFolderMatchString}" type="text"/>
@@ -84,7 +87,9 @@
 	          	<input name="folderMatchStrings" class="form-control" value="" type="text"/>
 	          	<input name="folderMatchStrings" class="form-control" value="" type="text"/>
 	          	<input name="submit" type="submit" value="Search" data-toggle="modal" data-target="#myModal"/>&nbsp;&nbsp;
-	          	<input name="searchFileSystem" type="checkbox" value="true"/>Search File System
+	          	<input name="searchFileSystem" type="checkbox" value="true"/>Search File System&nbsp;&nbsp;
+	          	<input name="moveDuplicates" type="checkbox" value="true"/>Move Duplicate Files&nbsp;&nbsp;
+	          	<input name="movePartFiles" type="checkbox" value="true"/>Move Part Files
 	      	</form>
 	      
   <!-- sample modal content -->

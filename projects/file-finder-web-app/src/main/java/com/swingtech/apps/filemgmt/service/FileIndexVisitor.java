@@ -55,7 +55,7 @@ public class FileIndexVisitor implements FileVisitor<Path> {
         // file.getName().indexOf("."));
         fullFileName = file.getAbsolutePath();
 
-        fileIndexResults.setTotalFilesSize(fileIndexResults.getTotalFilesSize() + file.getTotalSpace());
+        fileIndexResults.setTotalFilesSize(fileIndexResults.getTotalFilesSize() + file.length());
         fileIndexResults.setNumFilesProcessed(fileIndexResults.getNumFilesProcessed() + 1);
 
         if (fullFileName.endsWith(".part")) {
@@ -72,7 +72,7 @@ public class FileIndexVisitor implements FileVisitor<Path> {
     }
 
     public void processPartFile(File file) {
-        fileIndexResults.setTotalPartFileSize(fileIndexResults.getTotalPartFileSize() + file.getTotalSpace());
+        fileIndexResults.setTotalPartFileSize(fileIndexResults.getTotalPartFileSize() + file.length());
         fileIndexResults.setNumPartFiles(fileIndexResults.getNumPartFiles() + 1);
     }
 
@@ -88,12 +88,7 @@ public class FileIndexVisitor implements FileVisitor<Path> {
             fileIndexResults.getFileEntityMap().put(fileName, fileEntity);
         }
 
-        fileLocation = new FileLocationEntity();
-        fileLocation.setFileName(fileName);
-        fileLocation.setFile(file);
-        fileLocation.setAbsolutePath(file.getAbsolutePath());
-        fileLocation.setFileName(fileName);
-        fileLocation.setFileSize(file.getTotalSpace());
+        fileLocation = new FileLocationEntity(file);
 
         try {
             fileLocation.setUrl(new URL(file.getAbsolutePath()));

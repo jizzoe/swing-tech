@@ -84,7 +84,7 @@
           		</tr>
           		<tr align="left">
           			<td><b>Total File Size</b></td>
-          			<td th:text="${dupFileFinderResults.totalFilesSize}">--</td>
+          			<td th:text="${dupFileFinderResults.totalFileSizeDisplayString}">--</td>
           		</tr>
           		<tr align="left">
           			<td><b>Total # of Sub Directories Search</b></td>
@@ -96,7 +96,7 @@
           		</tr>
           		<tr align="left">
           			<td><b>Size of Part Files</b></td>
-          			<td th:text="${dupFileFinderResults.totalPartFileSize}">--</td>
+          			<td th:text="${dupFileFinderResults.totalPartFileSizeDisplayString}">--</td>
           		</tr>
           		<tr align="left">
           			<td><b>Number of Errors</b></td>
@@ -108,45 +108,194 @@
           		</tr>
           		<tr align="left">
           			<td><b>Size of Dups</b></td>
-          			<td th:text="${dupFileFinderResults.dupFilesSize}">--</td>
+          			<td th:text="${dupFileFinderResults.dupFilesSizeDisplay}">--</td>
           		</tr>
           		<tr align="left">
           			<td><b># of Part Files</b></td>
           			<td th:text="${dupFileFinderResults.numPartFiles}">--</td>
           		</tr>
           		<tr align="left">
-          			<td><b>Size of Part Files</b></td>
-          			<td th:text="${dupFileFinderResults.totalPartFileSize}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Dup Map Size</b></td>
+          			<td><b># of Dups in Map</b></td>
           			<td th:text="${dupFileFinderResults.dupMapSize}">--</td>
           		</tr>
           		</tbody>
           	</table>
           </div>
           
-          <span th:each="dupFile : ${dupFileFinderResults.dupFiles}">
-			  <div>
-		          <h2 class="sub-header">'nikki' - 5 Results</h2>
-		          <div class="table-responsive">
-		            <table class="table table-striped">
-		              <thead>
-		                <tr>
-		                  <th>File Name</th>
-		                  <th>Full File Path - Joe</th>
-		                </tr>
-		              </thead>
-		              <tbody>
-		                <tr>
-		                  <td><a href="file:///C:\Users\splas_000\Google Drive\speeches\economic\keyes\capitalism\projects\new\cim\tbc_nikki_bukkake.wmv">tbc_nikki_bukkake.wmv</a></td>
-		                  <td>C:\Users\splas_000\Google Drive\speeches\economic\keyes\capitalism\projects\new\cim\tbc_nikki_bukkake.wmv</td>
-		                </tr>
-		              </tbody>
-		            </table>
-		          </div>
+          <div>
+
+		    <!-- Nav tabs -->
+		    <ul class="nav nav-tabs" role="tablist">
+		      <li role="presentation" class="active"><a href="#mainFiles" aria-controls="mainFiles" role="tab" data-toggle="tab">Files Processed</a></li>
+		      <li role="presentation"><a href="#dupsMoved" aria-controls="dupsMoved" role="tab" data-toggle="tab">Dups that were Moved</a></li>
+		      <li role="presentation"><a href="#dupsNotMovedMultiMatches" aria-controls="dupsNotMovedMultiMatches" role="tab" data-toggle="tab">Dups that were NOT Moved - Multi Matches</a></li>
+		      <li role="presentation"><a href="#dupsNotMovedOriginal" aria-controls="dupsNotMovedOriginal" role="tab" data-toggle="tab">Dups that were NOT Moved - Original Files</a></li>
+		      <li role="presentation"><a href="#errorsTryingToMove" aria-controls="errorsTryingToMove" role="tab" data-toggle="tab">Dups That Errored</a></li>
+		      <li role="presentation"><a href="#partsMoved" aria-controls="partsMoved" role="tab" data-toggle="tab">Parts that Moved</a></li>
+		      <li role="presentation"><a href="#partsErrored" aria-controls="partsErrored" role="tab" data-toggle="tab">Parts that Errored</a></li>
+		    </ul>
+
+		    <!-- Tab panes -->
+		    <div class="tab-content">
+		      <div role="tabpanel" class="tab-pane active" id="mainFiles">
+		          <span th:each="dupFileMapEntry : ${dupFileFinderResults.dupFiles}">
+					  <div>
+				          <h2 class="sub-header" th:inline="text">'[[${dupFileMapEntry.value.dupFileName}]]' -  - [[${dupFileMapEntry.value.numDups}]] Dup Files</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="dupFileLocation : ${dupFileMapEntry.value.dupFileLocations}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
 	          </div>
-          </span>
+		      <div role="tabpanel" class="tab-pane" id="dupsNotMovedOriginal">
+		          <span th:each="dupFileMapEntry : ${dupFileFinderResults.dupFilesThatCantBeMoved}">
+					  <div>
+				          <h2 class="sub-header" th:inline="text">'[[${dupFileMapEntry.value.dupFileName}]]' -  - [[${dupFileMapEntry.value.numDups}]] Dup Files</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="dupFileLocation : ${dupFileMapEntry.value.dupFileLocations}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+		      </div>
+		      <div role="tabpanel" class="tab-pane" id="dupsMoved">
+		          <span>
+					  <div>
+				          <h2 class="sub-header">Dup Files Moved</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>From File Name</th>
+				                  <th>To File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="dupFileMovedEntry : ${dupFileFinderResults.duplicatesMoved}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileMovedEntry.key.absolutePath}}">[[${dupFileMovedEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileMovedEntry.value.absolutePath}}">[[${dupFileMovedEntry.value.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+		      </div>
+		      <div role="tabpanel" class="tab-pane" id="dupsNotMovedMultiMatches">
+		          <span>
+					  <div>
+				          <h2 class="sub-header">Dup Files NOT Moved - Originals</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>From File Name</th>
+				                  <th>To File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="dupFileLocation : ${dupFileFinderResults.duplicatesNotMoved}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+		      </div>
+		      <div role="tabpanel" class="tab-pane" id="errorsTryingToMove">
+		          <span>
+					  <div>
+				          <h2 class="sub-header">Dup Files Moved</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>From File Name</th>
+				                  <th>To File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="dupFileErrorEntry : ${dupFileFinderResults.duplicatesErrorTryingToMove}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileErrorEntry.key.absolutePath}}">[[${dupFileErrorEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileErrorEntry.value.absolutePath}}">[[${dupFileErrorEntry.value.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+			  </div>
+		      <div role="tabpanel" class="tab-pane" id="partsMoved">
+		          <span>
+					  <div>
+				          <h2 class="sub-header">Dup Files NOT Moved - Originals</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>From File Name</th>
+				                  <th>To File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="partFileLocation : ${dupFileFinderResults.partFiles}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileLocation.absolutePath}}">[[${partFileLocation.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+			  </div>
+		      <div role="tabpanel" class="tab-pane" id="partsErrored">
+		          <span>
+					  <div>
+				          <h2 class="sub-header">Dup Files Moved</h2>
+				          <div class="table-responsive">
+				            <table class="table table-striped">
+				              <thead>
+				                <tr>
+				                  <th>From File Name</th>
+				                  <th>To File Name</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr th:each="partFileErrorEntry : ${dupFileFinderResults.partsErrorTryingToMove}">
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileErrorEntry.key.absolutePath}}">[[${partFileErrorEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileErrorEntry.value.absolutePath}}">[[${partFileErrorEntry.value.absolutePath}]]</a></td>
+				                </tr>
+				              </tbody>
+				            </table>
+				          </div>
+			          </div>
+		          </span>
+		      </div>
+		    </div>
+
+          </div>
+          
         </div>
       </div>
     </div>

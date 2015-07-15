@@ -55,8 +55,10 @@ public class DupFileService {
         File searchDirectoryFile = null;
 
         for (String searchDirectoryFileName : searchDirectoryFileNames) {
-            searchDirectoryFile = new File(searchDirectoryFileName);
-            searchDirectoryFiles.add(searchDirectoryFile);
+            if (searchDirectoryFileName != null && !searchDirectoryFileName.trim().isEmpty()) {
+                searchDirectoryFile = new File(searchDirectoryFileName);
+                searchDirectoryFiles.add(searchDirectoryFile);
+            }
         }
 
         targetDupDirectory = new File(targetDupDirectoryName);
@@ -97,7 +99,17 @@ public class DupFileService {
             throw new IllegalArgumentException("searchDirectoryFiles cannot be null");
         }
 
+        System.out.println("\n\n\n");
+
+        System.out.println("Printing Files Going to Search");
+
         for (File searchDirectoryFile : searchDirectoryFiles) {
+            System.out.println("  " + searchDirectoryFile.getAbsolutePath());
+        }
+        System.out.println("\n\n\n");
+
+        for (File searchDirectoryFile : searchDirectoryFiles) {
+
             if (!searchDirectoryFile.exists()) {
                 dupFileFinderResults.getDirectoriesNotSearched().add(searchDirectoryFile);
                 continue;
@@ -277,6 +289,11 @@ public class DupFileService {
         File reportFile = null;
         String reportNameDateFormat = "MM.dd.yyyy-HH.mm.ss";
         String printReportDateFormat = "MM/dd/yyyy HH:mm:ss";
+
+        if (!reportDirectory.exists()) {
+            throw new IllegalArgumentException("Report Director, '" + reportDirectory.getAbsolutePath()
+                    + "', does not exist");
+        }
 
         reportSuffix = DupFileUtility.getDateString(Calendar.getInstance().getTime(), reportNameDateFormat);
 

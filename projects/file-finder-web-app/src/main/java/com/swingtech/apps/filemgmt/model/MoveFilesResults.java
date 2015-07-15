@@ -18,7 +18,6 @@
  */
 package com.swingtech.apps.filemgmt.model;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +29,8 @@ import java.util.Map;
  */
 public class MoveFilesResults extends BaseResults {
     Map<String, String> errors = new HashMap<String, String>();
-    private Map<File, File> filesMoved = new HashMap<File, File>();
-    private Map<File, File> filesNotMoved = new HashMap<File, File>();
+    private Map<FileLocationEntity, FileLocationEntity> filesMoved = new HashMap<FileLocationEntity, FileLocationEntity>();
+    private Map<FileLocationEntity, FileLocationEntity> filesNotMoved = new HashMap<FileLocationEntity, FileLocationEntity>();
 
     /**
      * @return the errors
@@ -61,7 +60,7 @@ public class MoveFilesResults extends BaseResults {
     /**
      * @return the filesMoved
      */
-    public Map<File, File> getFilesMoved() {
+    public Map<FileLocationEntity, FileLocationEntity> getFilesMoved() {
         return filesMoved;
     }
 
@@ -69,14 +68,14 @@ public class MoveFilesResults extends BaseResults {
      * @param filesMoved
      *            the filesMoved to set
      */
-    public void setFilesMoved(Map<File, File> filesMoved) {
+    public void setFilesMoved(Map<FileLocationEntity, FileLocationEntity> filesMoved) {
         this.filesMoved = filesMoved;
     }
 
     /**
      * @return the filesNotMoved
      */
-    public Map<File, File> getFilesNotMoved() {
+    public Map<FileLocationEntity, FileLocationEntity> getFilesNotMoved() {
         return filesNotMoved;
     }
 
@@ -84,7 +83,7 @@ public class MoveFilesResults extends BaseResults {
      * @param filesNotMoved
      *            the filesNotMoved to set
      */
-    public void setFilesNotMoved(Map<File, File> filesNotMoved) {
+    public void setFilesNotMoved(Map<FileLocationEntity, FileLocationEntity> filesNotMoved) {
         this.filesNotMoved = filesNotMoved;
     }
 }
