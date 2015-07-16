@@ -150,7 +150,7 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="dupFileLocation : ${dupFileMapEntry.value.dupFileLocations}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -171,7 +171,7 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="dupFileLocation : ${dupFileMapEntry.value.dupFileLocations}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -193,8 +193,8 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="dupFileMovedEntry : ${dupFileFinderResults.duplicatesMoved}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileMovedEntry.key.absolutePath}}">[[${dupFileMovedEntry.key.absolutePath}]]</a></td>
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileMovedEntry.value.absolutePath}}">[[${dupFileMovedEntry.value.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileMovedEntry.key.absolutePath}}">[[${dupFileMovedEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileMovedEntry.value.absolutePath}}">[[${dupFileMovedEntry.value.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -216,7 +216,7 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="dupFileLocation : ${dupFileFinderResults.duplicatesNotMoved}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileLocation.absolutePath}}">[[${dupFileLocation.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -238,8 +238,8 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="dupFileErrorEntry : ${dupFileFinderResults.duplicatesErrorTryingToMove}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileErrorEntry.key.absolutePath}}">[[${dupFileErrorEntry.key.absolutePath}]]</a></td>
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${dupFileErrorEntry.value.absolutePath}}">[[${dupFileErrorEntry.value.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileErrorEntry.key.absolutePath}}">[[${dupFileErrorEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${dupFileErrorEntry.value.absolutePath}}">[[${dupFileErrorEntry.value.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -261,7 +261,7 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="partFileLocation : ${dupFileFinderResults.partFiles}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileLocation.absolutePath}}">[[${partFileLocation.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${partFileLocation.absolutePath}}">[[${partFileLocation.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>
@@ -283,8 +283,8 @@
 				              </thead>
 				              <tbody>
 				                <tr th:each="partFileErrorEntry : ${dupFileFinderResults.partsErrorTryingToMove}">
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileErrorEntry.key.absolutePath}}">[[${partFileErrorEntry.key.absolutePath}]]</a></td>
-				                  <td th:inline="text"><a href="joe" th:href="@{'/video-player?videoFileName='+${partFileErrorEntry.value.absolutePath}}">[[${partFileErrorEntry.value.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${partFileErrorEntry.key.absolutePath}}">[[${partFileErrorEntry.key.absolutePath}]]</a></td>
+				                  <td th:inline="text"><a href="joe" th:href="@{'/media-viewer?videoFileName='+${partFileErrorEntry.value.absolutePath}}">[[${partFileErrorEntry.value.absolutePath}]]</a></td>
 				                </tr>
 				              </tbody>
 				            </table>

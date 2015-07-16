@@ -19,6 +19,7 @@ import com.swingtech.apps.filemgmt.model.FileLocationEntity;
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.model.FileSearchResult;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
+import com.swingtech.apps.filemgmt.model.MimeTypeEnum;
 import com.swingtech.apps.filemgmt.model.MoveFilesResults;
 import com.swingtech.apps.filemgmt.model.SearchTermResults;
 import com.swingtech.apps.filemgmt.model.VideoPlayerInputs;
@@ -60,7 +61,8 @@ public class FileSearchService {
         videoPlayerInputs.setVideoFileName(fileName);
         videoPlayerInputs.setVideoFileNameWithoutExtension(fileNameWithoutExtesion);
         videoPlayerInputs.setFileType(fileExtension);
-        videoPlayerInputs.setFileMimeType(DupFileUtility.getFileMimeTypeFromFileExtension(fileExtension));
+        System.out.println("---------->fileExtension:  " + fileExtension);
+        videoPlayerInputs.setFileMimeType(MimeTypeEnum.getByFileExtension(fileExtension));
         videoPlayerInputs.setVideoFile(videoFile);
 
         return videoPlayerInputs;

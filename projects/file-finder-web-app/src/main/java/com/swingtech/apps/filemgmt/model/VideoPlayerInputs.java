@@ -31,7 +31,7 @@ public class VideoPlayerInputs {
     public String videoFileName = null;
     public String videoFileNameWithoutExtension = null;
     public String fileType = null;
-    public String fileMimeType = null;
+    public MimeTypeEnum fileMimeType = null;
     public File videoFile = null;
 
     /**
@@ -67,7 +67,7 @@ public class VideoPlayerInputs {
     /**
      * @return the fileMimeType
      */
-    public String getFileMimeType() {
+    public MimeTypeEnum getFileMimeType() {
         return fileMimeType;
     }
 
@@ -75,7 +75,7 @@ public class VideoPlayerInputs {
      * @param fileMimeType
      *            the fileMimeType to set
      */
-    public void setFileMimeType(String fileMimeType) {
+    public void setFileMimeType(MimeTypeEnum fileMimeType) {
         this.fileMimeType = fileMimeType;
     }
 
@@ -122,5 +122,24 @@ public class VideoPlayerInputs {
      */
     public void setVideoFileNameWithoutExtension(String videoFileNameWithoutExtension) {
         this.videoFileNameWithoutExtension = videoFileNameWithoutExtension;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("Values of inputs:\n");
+        sb.append("   videoFileNameAbsolutePath = " + videoFileNameAbsolutePath + "\n");
+        sb.append("   videoFileName = " + videoFileName + "\n");
+        sb.append("   videoFileNameWithoutExtension = " + videoFileNameWithoutExtension + "\n");
+        sb.append("   fileType = " + fileType + "\n");
+        sb.append("   fileMimeType = " + fileMimeType + "\n");
+        sb.append("   videoFile = " + videoFile.getAbsolutePath() + "\n");
+
+        return sb.toString();
     }
 }

@@ -18,12 +18,6 @@
  */
 package com.swingtech.apps.filemgmt.util;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @DOCME
@@ -32,88 +26,95 @@ import org.junit.Test;
  *
  */
 public class DupFileUtilityTest {
-
-    @Test
-    public void test() {
-        Map<String, Boolean> matchStringList;
-        String matchFileString = null;
-        File matchFile = null;
-
-        matchFileString = "C:\\drives\\Google Drive\\capitalism\\new\\new25-\\VideoDrive - Video of a Certain Quality.mp4";
-        matchFile = new File(matchFileString);
-
-        matchStringList = this.getNormalSuccessData();
-        this.executeFileMatchTest(matchFile, matchStringList, false);
-
-        matchStringList = this.getCaseSensitiveSuccessData();
-        this.executeFileMatchTest(matchFile, matchStringList, false);
-
-        matchStringList = this.getFailureData();
-        this.executeFileMatchTest(matchFile, matchStringList, false);
-    }
-
-    protected void executeFileMatchTest(File matchFile, Map<String, Boolean> matchStringList, boolean caseSensitive) {
-        Boolean fileMatches = null;
-
-        for (Map.Entry<String, Boolean> matchEntry : matchStringList.entrySet()) {
-            String matchString = matchEntry.getKey();
-            Boolean expectedFileMatch = matchEntry.getValue();
-
-            fileMatches = DupFileUtility.fileMatchesPattern(matchFile, matchString, caseSensitive);
-
-            // System.out.println("   does match String:  '" + matchString +
-            // "' match target String:  '"
-            // + matchFile.getAbsolutePath() + "'?  " + fileMatches);
-
-            Assert.assertEquals("Operation did not match expected results.  Expected = '" + expectedFileMatch
-                    + "'.  Actual = '" + fileMatches + "'.  Trying to match this string '" + matchString
-                    + "' to this fileName '" + matchFile.getAbsolutePath() + "'.", expectedFileMatch, fileMatches);
-        }
-    }
-
-    protected Map<String, Boolean> getNormalSuccessData() {
-        Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
-
-        matchStringList.put("Video", true);
-        matchStringList.put("Video of a Certain", true);
-        matchStringList.put("VideoDrive - ", true);
-        matchStringList.put("mp4", true);
-        matchStringList.put(".mp4", true);
-        matchStringList.put("VideoDrive - Video of a Certain Quality", true);
-        matchStringList.put("VideoDrive - Video of a Certain Quality.mp4", true);
-        matchStringList.put("VideoDrive - Video of a Certain Quality~mp4", true);
-        matchStringList.put("~VideoDrive -~", true);
-        matchStringList.put("VideoDrive -~", true);
-        matchStringList.put("~Certain Quality.mp4", true);
-        matchStringList.put("~Video~of~a~Certain~Quality~", true);
-
-        return matchStringList;
-    }
-
-    protected Map<String, Boolean> getCaseSensitiveSuccessData() {
-        Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
-
-        matchStringList.put("video", true);
-        matchStringList.put("video of a certain", true);
-        matchStringList.put("videodrive - ", true);
-        matchStringList.put("MP4", true);
-        matchStringList.put(".MP4", true);
-        matchStringList.put("VIDEODRIVE - VIDEO OF A CERTAIN QUALITY", true);
-        matchStringList.put("videodrive - video of a certain quality.mp4", true);
-        matchStringList.put("vIDEOdrive - vIDEO OF A cERTAIN qUALITY~mp4", true);
-        matchStringList.put("~videodrive -~", true);
-        matchStringList.put("VIDEODRIVE -~", true);
-        matchStringList.put("~certain quality.mp4", true);
-        matchStringList.put("~video~of~a~certain~quality~", true);
-
-        return matchStringList;
-    }
-
-    protected Map<String, Boolean> getFailureData() {
-        Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
-
-        matchStringList.put("video", true);
-
-        return matchStringList;
-    }
+    //
+    // @Test
+    // public void test() {
+    // Map<String, Boolean> matchStringList;
+    // String matchFileString = null;
+    // File matchFile = null;
+    //
+    // matchFileString =
+    // "C:\\drives\\Google Drive\\capitalism\\new\\new25-\\VideoDrive - Video of a Certain Quality.mp4";
+    // matchFile = new File(matchFileString);
+    //
+    // matchStringList = this.getNormalSuccessData();
+    // this.executeFileMatchTest(matchFile, matchStringList, false);
+    //
+    // matchStringList = this.getCaseSensitiveSuccessData();
+    // this.executeFileMatchTest(matchFile, matchStringList, false);
+    //
+    // matchStringList = this.getFailureData();
+    // this.executeFileMatchTest(matchFile, matchStringList, false);
+    // }
+    //
+    // protected void executeFileMatchTest(File matchFile, Map<String, Boolean>
+    // matchStringList, boolean caseSensitive) {
+    // Boolean fileMatches = null;
+    //
+    // for (Map.Entry<String, Boolean> matchEntry : matchStringList.entrySet())
+    // {
+    // String matchString = matchEntry.getKey();
+    // Boolean expectedFileMatch = matchEntry.getValue();
+    //
+    // fileMatches = DupFileUtility.fileMatchesPattern(matchFile, matchString,
+    // caseSensitive);
+    //
+    // // System.out.println("   does match String:  '" + matchString +
+    // // "' match target String:  '"
+    // // + matchFile.getAbsolutePath() + "'?  " + fileMatches);
+    //
+    // Assert.assertEquals("Operation did not match expected results.  Expected = '"
+    // + expectedFileMatch
+    // + "'.  Actual = '" + fileMatches + "'.  Trying to match this string '" +
+    // matchString
+    // + "' to this fileName '" + matchFile.getAbsolutePath() + "'.",
+    // expectedFileMatch, fileMatches);
+    // }
+    // }
+    //
+    // protected Map<String, Boolean> getNormalSuccessData() {
+    // Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
+    //
+    // matchStringList.put("Video", true);
+    // matchStringList.put("Video of a Certain", true);
+    // matchStringList.put("VideoDrive - ", true);
+    // matchStringList.put("mp4", true);
+    // matchStringList.put(".mp4", true);
+    // matchStringList.put("VideoDrive - Video of a Certain Quality", true);
+    // matchStringList.put("VideoDrive - Video of a Certain Quality.mp4", true);
+    // matchStringList.put("VideoDrive - Video of a Certain Quality~mp4", true);
+    // matchStringList.put("~VideoDrive -~", true);
+    // matchStringList.put("VideoDrive -~", true);
+    // matchStringList.put("~Certain Quality.mp4", true);
+    // matchStringList.put("~Video~of~a~Certain~Quality~", true);
+    //
+    // return matchStringList;
+    // }
+    //
+    // protected Map<String, Boolean> getCaseSensitiveSuccessData() {
+    // Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
+    //
+    // matchStringList.put("video", true);
+    // matchStringList.put("video of a certain", true);
+    // matchStringList.put("videodrive - ", true);
+    // matchStringList.put("MP4", true);
+    // matchStringList.put(".MP4", true);
+    // matchStringList.put("VIDEODRIVE - VIDEO OF A CERTAIN QUALITY", true);
+    // matchStringList.put("videodrive - video of a certain quality.mp4", true);
+    // matchStringList.put("vIDEOdrive - vIDEO OF A cERTAIN qUALITY~mp4", true);
+    // matchStringList.put("~videodrive -~", true);
+    // matchStringList.put("VIDEODRIVE -~", true);
+    // matchStringList.put("~certain quality.mp4", true);
+    // matchStringList.put("~video~of~a~certain~quality~", true);
+    //
+    // return matchStringList;
+    // }
+    //
+    // protected Map<String, Boolean> getFailureData() {
+    // Map<String, Boolean> matchStringList = new HashMap<String, Boolean>();
+    //
+    // matchStringList.put("video", true);
+    //
+    // return matchStringList;
+    // }
 }

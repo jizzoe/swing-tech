@@ -10,6 +10,7 @@ import com.swingtech.apps.filemgmt.model.DupFileFinderResults;
 import com.swingtech.apps.filemgmt.model.DupFilePreferences;
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
+import com.swingtech.apps.filemgmt.model.FileTypeEnum;
 import com.swingtech.apps.filemgmt.model.MoveFilesResults;
 import com.swingtech.apps.filemgmt.model.VideoPlayerInputs;
 import com.swingtech.apps.filemgmt.service.DupFileService;
@@ -47,7 +48,7 @@ public class FileMgmtController {
         return "duplicate-file-input";
     }
 
-    @RequestMapping("/video-player")
+    @RequestMapping("/media-viewer")
     public String viewVideoPlayer(@RequestParam(value = "videoFileName", required = false) String videoFileName,
             Model model) {
         VideoPlayerInputs videoPlayerInputs = null;
@@ -56,13 +57,36 @@ public class FileMgmtController {
 
         System.out.println("Viewing video File.  Incoming fileName to view:  " + videoFileName);
 
-        System.out.println("\n\n\n");
-
         videoPlayerInputs = fileSearchService.getVideoPlayerInputs(videoFileName);
 
         model.addAttribute("videoPlayerInputs", videoPlayerInputs);
+        System.out.println("Inputs file mime type:  " + videoPlayerInputs.getFileMimeType());
 
-        return "video-player";
+        System.out.println(videoPlayerInputs);
+
+        if (videoPlayerInputs.getFileMimeType() != null) {
+            System.out.println("Inputs file type:  " + videoPlayerInputs.getFileMimeType().getFileType());
+        }
+        else {
+            System.out.println("Inputs file type:  == NULL");
+        }
+
+        if (videoPlayerInputs.getFileMimeType().getFileType().equals(FileTypeEnum.VIDEO)) {
+            System.out.println("Returning video-player");
+            System.out.println("\n\n\n");
+            return "video-player";
+
+        }
+        else if (videoPlayerInputs.getFileMimeType().getFileType().equals(FileTypeEnum.IMAGE)) {
+            System.out.println("image-viewer");
+            System.out.println("\n\n\n");
+            return "image-viewer";
+
+        }
+        else {
+            System.out.println("unsupported-media");
+            return "unsupported-media";
+        }
     }
 
     @RequestMapping("/stream-video")

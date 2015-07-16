@@ -12,6 +12,19 @@
 
     <title>Swing-Tech File Management - Home</title>
 
+	<link href="./video-js/video-js.css" rel="stylesheet"/>
+	<script src="./video-js/video.js"></script>
+	<script src="./video-js/videojs-silverlight.js"></script>
+	<script>
+	  videojs.options.flash.swf = "./video-js/video-js.swf"
+	</script>
+	<style>
+		.image-viewer {
+			margin: auto;
+		    width: 60%;
+		    padding: 10px;
+		}
+	</style>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet"/>
 
@@ -61,82 +74,17 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Search Results Summary</h1>
+          <h1 class="page-header">Video Viewer</h1>
+          <br/>
+          <b>File Name</b>:  <span th:text="${videoPlayerInputs.videoFileName}">${videoPlayerInputs.videoFileName}</span>
+          <br/>
+          <b>File Location</b>:  <span th:text="${videoPlayerInputs.videoFileNameAbsolutePath}">${videoPlayerInputs.videoFileNameAbsolutePath}</span>
+          <br/>
+          <br/>
+          <div class="image-viewer">
+		  	<img th:attr="src=@{'http://localhost:8090/stream-video?videoFileName='+${videoPlayerInputs.videoFileNameAbsolutePath}}" src="xxx"/>
+		  </div>
 
-          <div class="row placeholders">
-          	<table class="table table-striped">
-          	<tbody>
-          		<tr align="left">
-          			<td width="22%"><b>Date Search Started</b></td>
-          			<td th:text="${fileSearchResults.dateTestRanStartedDisplayString}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Date Search Ended</b></td>
-          			<td th:text="${fileSearchResults.dateTestRanEndedDisplayString}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Search Duration</b></td>
-          			<td th:text="${fileSearchResults.testDurationDisplayString}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Total # of files processed</b></td>
-          			<td th:text="${fileSearchResults.numFilesProcessed}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b># of files match</b></td>
-          			<td th:text="${fileSearchResults.numFilesMatchSearch}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Total File Size</b></td>
-          			<td th:text="${fileSearchResults.totalFileSizeDisplayString}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Total # of Sub Directories Search</b></td>
-          			<td th:text="${fileSearchResults.totalNumDirectories}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Number of Part Files</b></td>
-          			<td th:text="${fileSearchResults.numPartFiles}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Size of Part Files</b></td>
-          			<td th:text="${fileSearchResults.totalPartFileSizeDisplayString}">--</td>
-          		</tr>
-          		<tr align="left">
-          			<td><b>Number of Errors</b></td>
-          			<td th:text="${fileSearchResults.numErrors}">--</td>
-          		</tr>
-          		</tbody>
-          	</table>
-          </div>
-          
-          <span th:each="searchResult : ${fileSearchResults.searchTermResults}">
-			  <div>
-
-				<form action="/move-files">
-          	      <b>Move To Directory:</b>&nbsp;<input type="text" name="moveToDirectory" th:value="${fileSearchPreferences.defaultMoveToDirectory}" style="width:1000px;"/>&nbsp;&nbsp;<input type="submit" name="moveButton" value = "moveFiles"/>
-          	      <br/>
-          	      <br/>
-		          <h2 class="sub-header" th:inline="text">'[[${searchResult.searchTerm}]]' - [[${searchResult.numberOfFileSearchResults}]] Results</h2>
-		          <div class="table-responsive">
-		            <table class="table table-striped">
-		              <thead>
-		                <tr>
-		                  <th>File Name</th>
-		                  <th>Full File Path</th>
-		                </tr>
-		              </thead>
-		              <tbody>
-		                <tr th:each="fileSearchMatch : ${searchResult.fileSearchMatches}">
-		                  <td th:inline="text"><input name="filesToMove" type="checkbox" th:value="${fileSearchMatch.matchFileFullPath}"/>&nbsp;&nbsp;&nbsp;<a href="joe" th:href="@{'/media-viewer?videoFileName='+${fileSearchMatch.matchFileFullPath}}">[[${fileSearchMatch.matchFileName}]]</a></td>
-		                  <td th:inline="text">[[${fileSearchMatch.matchFileFullPath}]]</td>
-		                </tr>
-		              </tbody>
-		            </table>
-		          </div>
-		        </form>
-	          </div>
-          </span>
         </div>
       </div>
     </div>
