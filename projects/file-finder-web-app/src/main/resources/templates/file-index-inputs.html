@@ -12,13 +12,6 @@
 
     <title>Swing-Tech File Management - Home</title>
 
-	<link href="./video-js/video-js.css" rel="stylesheet"/>
-	<script src="./video-js/video.js"></script>
-	<script src="./video-js/videojs-silverlight.js"></script>
-	<script>
-	  videojs.options.flash.swf = "./video-js/video-js.swf"
-	</script>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet"/>
 
@@ -63,27 +56,49 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/search-files-input">Search Files<span class="sr-only">(current)</span></a></li>
+            <li><a href="/search-files-input">Search Files</a></li>
             <li><a href="/find-duplicates-input">Find Duplicate Files</a></li>
-            <li><a href="/file-index-inputs">Index Files</a></li>
+            <li class="active"><a href="/file-index-inputs">Index Files<span class="sr-only">(current)</span></a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Image Viewer</h1>
-          <br/>
-          <b>File Name</b>:  <span th:text="${videoPlayerInputs.videoFileName}">${videoPlayerInputs.videoFileName}</span>
-          <br/>
-          <b>File Location</b>:  <span th:text="${videoPlayerInputs.videoFileNameAbsolutePath}">${videoPlayerInputs.videoFileNameAbsolutePath}</span>
-          <br/>
-          <br/>
+          <div>
+          	<h2 class="sub-header">Index Files</h2>
+          	<form action="/index-files">
+          		<b>Directories to Index</b>
+          		<span th:each="defaultSearchDirectoryName : ${FileIndexPreferences.defaultSearchDirectoryNames}">
+          			<input name="searchDirectories" class="form-control" th:value="${defaultSearchDirectoryName}" type="text"/>
+          		</span>
+	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
+	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
+	          	<br/>
+          		<b>Directories to Exclude</b>
+          		<span th:each="defaultExcludeDirectoryName : ${FileIndexPreferences.defaultExcludeDirectoryNames}">
+          			<input name="excludeDirectories" class="form-control" th:value="${defaultExcludeDirectoryName}" type="text"/>
+          		</span>
+	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
+	          	<input name="searchDirectories" class="form-control" value="" type="text"/>
+	          	<br/>
+          		<b>Default Report Directory</b>
+          		<span>
+          			<input name="targetReportDirectory" class="form-control" th:value="${FileIndexPreferences.defaultReportDirectory}" type="text"/>
+          		</span>
+	          	<br/>
+	          	<input name="submit" type="submit" value="Index File System" data-toggle="modal" data-target="#myModal"/>&nbsp;&nbsp;
+	      	</form>
 
-<video id="example_video_1" class="video-js vjs-default-skin"
-  controls="controls" preload="auto" width="90%" height="600"
-  poster="http://video-js.zencoder.com/oceans-clip.png"
-  data-setup='{}'>
- <source th:attr="src=@{'http://localhost:8090/stream-video?videoFileName='+${videoPlayerInputs.videoFileNameAbsolutePath}}, type=@{${videoPlayerInputs.fileMimeType}}" type='[[${videoPlayerInputs.fileMimeType}]]' />
- <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-</video>
+  <!-- sample modal content -->
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <img src="img/wait_animation.gif"/>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+ 		  </div>
         </div>
       </div>
     </div>

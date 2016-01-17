@@ -36,6 +36,7 @@ public class FileIndexResults extends BaseResults {
     Map<String, FileEntity> addedFileEntityMap = new HashMap<String, FileEntity>();
     List<FileLocationEntity> addedFileLocations = new ArrayList<FileLocationEntity>();
     List<FileLocationEntity> removedFileLocations = new ArrayList<FileLocationEntity>();
+    int numberOfFileEntities = 0;
 
     /**
      * @return the fileEntityMap
@@ -71,6 +72,12 @@ public class FileIndexResults extends BaseResults {
      * @return the numberOfFileEntities
      */
     public int getNumberOfFileEntities() {
+        if (numberOfFileEntities > 0) {
+            return numberOfFileEntities;
+        }
+        if (fileEntityMap == null) {
+            return 0;
+        }
         return fileEntityMap.size();
     }
 
@@ -132,6 +139,14 @@ public class FileIndexResults extends BaseResults {
      */
     public void setRemovedFileLocations(List<FileLocationEntity> removedFileLocations) {
         this.removedFileLocations = removedFileLocations;
+    }
+
+    /**
+     * @param numberOfFileEntities
+     *            the numberOfFileEntities to set
+     */
+    public void setNumberOfFileEntities(int numberOfFileEntities) {
+        this.numberOfFileEntities = numberOfFileEntities;
     }
 
 }

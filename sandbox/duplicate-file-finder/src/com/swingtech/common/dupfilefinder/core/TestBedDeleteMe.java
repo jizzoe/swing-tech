@@ -14,7 +14,6 @@ public class TestBedDeleteMe {
 		
 		printMatches("Test 1", matchStringListModel);
 		
-		
 		matchStringListModel = getTestData2();
 		
 		printMatches("Test 2", matchStringListModel);

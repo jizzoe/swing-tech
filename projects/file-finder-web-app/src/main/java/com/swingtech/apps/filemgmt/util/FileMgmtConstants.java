@@ -28,6 +28,7 @@ public class FileMgmtConstants {
     public static final String FILE_MGMT_HOME_DIR = "/tmp/swingtech/filemgmt";
     public static final String INDEX_FILE_LOCATION = FILE_MGMT_HOME_DIR + "/fileIndex.json";
     public static final String DUP_FILE_PREFERENCES_FILE_LOCATION = FILE_MGMT_HOME_DIR + "/dupFilePreferences.json";
+    public static final String FILE_INDEX_PREFERENCES_FILE_LOCATION = FILE_MGMT_HOME_DIR + "/FileIndexPreferences.json";
     public static final String FILE_SEARCH_PREFERENCES_FILE_LOCATION = FILE_MGMT_HOME_DIR
             + "/fileSearchPreferences.json";
     public static final String INDEX_REPORT_FILE_LOCATION = FILE_MGMT_HOME_DIR + "/fileIndexReport.json";

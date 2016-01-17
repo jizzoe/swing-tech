@@ -64,7 +64,7 @@ public class FileIndexVisitor implements FileVisitor<Path> {
 
         this.processFile(fileName, file);
 
-        if (index % 10 == 0) {
+        if (index % 1000 == 0) {
             System.out.println("Processing row " + index);
         }
 

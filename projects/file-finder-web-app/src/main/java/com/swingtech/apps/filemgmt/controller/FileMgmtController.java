@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.swingtech.apps.filemgmt.model.DupFileFinderResults;
 import com.swingtech.apps.filemgmt.model.DupFilePreferences;
+import com.swingtech.apps.filemgmt.model.FileIndexPreferences;
+import com.swingtech.apps.filemgmt.model.FileIndexResults;
 import com.swingtech.apps.filemgmt.model.FileSearchPreferences;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
 import com.swingtech.apps.filemgmt.model.FileTypeEnum;
 import com.swingtech.apps.filemgmt.model.MoveFilesResults;
 import com.swingtech.apps.filemgmt.model.VideoPlayerInputs;
 import com.swingtech.apps.filemgmt.service.DupFileService;
+import com.swingtech.apps.filemgmt.service.FileIndexService;
 import com.swingtech.apps.filemgmt.service.FileSearchService;
 import com.swingtech.apps.filemgmt.util.MultiPartFileSender;
 import com.swingtech.apps.filemgmt.util.Timer;
@@ -31,6 +34,7 @@ public class FileMgmtController {
 
     private FileSearchService fileSearchService = new FileSearchService();
     private DupFileService dupFileService = new DupFileService();
+    private FileIndexService fileIndexService = new FileIndexService();
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -119,8 +123,7 @@ public class FileMgmtController {
     }
 
     @RequestMapping("/search-files-input")
-    public String viewSearchFiles(@RequestParam(value = "vacationStyle", required = false) List<String> vacationStyles,
-            Model model) {
+    public String viewSearchFiles(Model model) {
         FileSearchPreferences fileSearchPreferences = null;
 
         fileSearchPreferences = fileSearchService.retrieveFileSearchPreferences();
@@ -128,6 +131,17 @@ public class FileMgmtController {
         model.addAttribute("fileSearchPreferences", fileSearchPreferences);
 
         return "file-search-input";
+    }
+
+    @RequestMapping("/file-index-inputs")
+    public String viewFileIndex(Model model) {
+        FileIndexPreferences fileIndexPreferences = null;
+
+        fileIndexPreferences = fileIndexService.retrieveFileIndexPreferences();
+
+        model.addAttribute("FileIndexPreferences", fileIndexPreferences);
+
+        return "file-index-inputs";
     }
 
     @RequestMapping("/find-duplicates")
@@ -212,6 +226,30 @@ public class FileMgmtController {
         return "file-search-results";
     }
 
+    @RequestMapping("/index-files")
+    public String indexFiles(
+            @RequestParam(value = "searchDirectories", required = false) List<String> searchDirectories,
+            @RequestParam(value = "excludeDirectories", required = false) List<String> excludeDirStrings,
+            @RequestParam(value = "targetReportDirectory", required = false) String targetReportDirectory, Model model) {
+        FileIndexResults fileIndexResults = null;
+
+        this.tempPrintIndexInputs(searchDirectories, excludeDirStrings);
+
+        try {
+            fileIndexResults = fileIndexService.indexAllFilesWithStrings(searchDirectories, excludeDirStrings);
+
+            this.tempPrintIndexResults(fileIndexResults, targetReportDirectory);
+        }
+        catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        model.addAttribute("fileIndexResults", fileIndexResults);
+
+        return "file-index-results";
+    }
+
     @RequestMapping("/move-files")
     public String moveFiles(@RequestParam(value = "filesToMove", required = false) List<String> filesToMove,
             @RequestParam(value = "moveToDirectory", required = false) String moveToDirectory, Model model) {
@@ -276,6 +314,24 @@ public class FileMgmtController {
         System.out.println("\n\n\n");
     }
 
+    private void tempPrintIndexInputs(List<String> searchDirectories, List<String> excludeDirStrings) {
+        System.out.println("\n\n\n" + searchDirectories.size() + " Incoming Search Directories to index");
+
+        for (String searchDirectory : searchDirectories) {
+            System.out.println("   '" + searchDirectory + "'");
+        }
+
+        if (excludeDirStrings != null) {
+            System.out.println("\n\n\n" + excludeDirStrings.size() + " Incoming Directories to exclude");
+
+            for (String excludeDirectory : excludeDirStrings) {
+                System.out.println("   '" + excludeDirectory + "'");
+            }
+        }
+
+        System.out.println("\n\n\n");
+    }
+
     private void tempPrintSearchInputs(List<String> searchDirectories, List<String> searchTerms,
             Boolean searchFileSystem) {
         System.out.println("\n\n\nIncoming Search Directories");
@@ -297,6 +353,11 @@ public class FileMgmtController {
 
     private void tempPrintSearchResults(FileSearchResults fileSearchResults) throws Exception {
         fileSearchService.printSearchResults(fileSearchResults, null);
+    }
+
+    private void tempPrintIndexResults(FileIndexResults fileIndexResults, String targetReportDirectory)
+            throws Exception {
+        fileIndexService.printResults(fileIndexResults, new File(targetReportDirectory));
     }
 
     private void tempPrintMoveFileResults(MoveFilesResults moveFilesResults) throws Exception {

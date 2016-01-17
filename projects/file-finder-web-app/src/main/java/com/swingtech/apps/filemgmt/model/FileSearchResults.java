@@ -19,7 +19,9 @@
 package com.swingtech.apps.filemgmt.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @DOCME
@@ -28,8 +30,7 @@ import java.util.List;
  *
  */
 public class FileSearchResults extends BaseResults {
-    // private Map<String, List<FileSearchResult>> searchResults = new
-    // HashMap<String, List<FileSearchResult>>();
+    private Map<String, List<FileSearchResult>> searchResults = new HashMap<String, List<FileSearchResult>>();
     private int numFilesMatchSearch;
     private List<SearchTermResults> searchTermResults = new ArrayList<SearchTermResults>();
     private List<String> searchTermsSearched = new ArrayList<String>();

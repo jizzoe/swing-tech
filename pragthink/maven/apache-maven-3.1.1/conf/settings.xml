@@ -122,6 +122,11 @@ under the License.
       <username>deployment</username>
       <password>d3pl0y</password>
     </server>
+    <server>
+      <id>nexus-releases</id>
+      <username>deployment</username>
+      <password>d3pl0y</password>
+    </server>
     
     <!-- Another sample, using keys to authenticate.
     <server>

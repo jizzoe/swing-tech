@@ -349,9 +349,9 @@ public class DupFileService {
         reportBuffer.append("\n");
 
         reportBuffer
-                .append("\n******Printing "
-                        + dupFileFinderResults.getDupFilesThatCantBeMoved().size()
-                        + " Duplicates that could NOT be moved (because there was more than 1 file in a matching directory)*****");
+        .append("\n******Printing "
+                + dupFileFinderResults.getDupFilesThatCantBeMoved().size()
+                + " Duplicates that could NOT be moved (because there was more than 1 file in a matching directory)*****");
 
         for (String fileName : dupFileFinderResults.getDupFilesThatCantBeMoved().keySet()) {
             DupFile dupFile = dupFileFinderResults.getDupFilesThatCantBeMoved().get(fileName);
@@ -484,6 +484,11 @@ public class DupFileService {
         System.out.println("dateString:  " + dateString);
     }
 
+    public static void main(String[] args) throws Exception {
+        testService(args);
+        // testPreferences(args);
+    }
+
     public static void testPreferences(String[] args) throws Exception {
         DupFilePreferences dupFilePreferences = null;
 
@@ -568,8 +573,8 @@ public class DupFileService {
         // matchStrings = new ArrayList<String>();
         // matchStrings.add("\\rated\\");
 
-        targetDupDirectory = new File("C:\\Users\\splas_000\\speeches\\dups\\new3\\dups");
-        targetPartDirectory = new File("C:\\Users\\splas_000\\speeches\\dups\\new3\\parts");
+        targetDupDirectory = new File("C:\\Users\\splas_000\\speeches\\dups\\new4\\dups");
+        targetPartDirectory = new File("C:\\Users\\splas_000\\speeches\\dups\\new4\\parts");
         targetReportDirectory = new File("C:\\Users\\splas_000\\speeches\\dups\\new3");
 
         searchDirectoryFiles = new ArrayList<File>();
@@ -580,13 +585,13 @@ public class DupFileService {
         matchStrings.add("\\rated\\");
         matchStrings.add("\\projects\\");
 
-        moveDuplicates = false;
-        movePartFiles = false;
+        moveDuplicates = true;
+        movePartFiles = true;
 
         dupFileService = new DupFileService();
 
         dupFileFinderResults = dupFileService.findAndMoveAllDuplicates(searchDirectoryFiles, targetDupDirectory,
-                targetPartDirectory, matchStrings, moveDuplicates, movePartFiles, false);
+                targetPartDirectory, matchStrings, moveDuplicates, movePartFiles, true);
 
         dupFileService.printResults(dupFileFinderResults, targetReportDirectory);
     }

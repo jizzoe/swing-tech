@@ -20,6 +20,7 @@ package com.swingtech.apps.filemgmt.dao.impl.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ import com.swingtech.apps.filemgmt.model.FileLocationEntity;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
 import com.swingtech.apps.filemgmt.util.FileMgmtConstants;
 import com.swingtech.apps.filemgmt.util.JsonUtil;
+import com.swingtech.apps.filemgmt.util.Timer;
 
 /**
  * @DOCME
@@ -101,17 +103,53 @@ public class FileIndexhDaoImplFileBased implements FileIndexDao {
             fileIndexResultsReportData = new FileIndexResultsReportData();
         }
 
+        // ****************************************************************************************************************
+        // START HACK. YES, THIS IS A HACK.
+        // I'm sure you can figure out what hackish things are going on here
+
+        Map<String, FileEntity> tempFileEntityMapHolder = new HashMap<String, FileEntity>();
+
+        tempFileEntityMapHolder = fileIndexResults.getFileEntityMap();
+        fileIndexResults.setNumberOfFileEntities(fileIndexResults.getFileEntityMap().size());
+        fileIndexResults.setFileEntityMap(null);
+        // ****************************************************************************************************************
+
         fileIndexResultsReportData.getFileIndexResultsList().add(fileIndexResults);
 
         this.saveFileIndexResultsReportData(fileIndexResultsReportData);
+
+        // ****************************************************************************************************************
+        // END HACK. YES, THIS IS A HACK.
+        // I'm sure you can figure out what hackish things are going on here
+
+        fileIndexResults.setFileEntityMap(tempFileEntityMapHolder);
+        fileIndexResults.setNumberOfFileEntities(0);
+        // ****************************************************************************************************************
 
         return fileIndexResults;
     }
 
     private void removeDeletedFileNames(Map<String, FileEntity> existingFileEntityMap,
             Map<String, FileEntity> newFileEntityMap, FileIndexResults fileIndexResults) {
-        for (String key : existingFileEntityMap.keySet()) {
+        int index = 0;
+
+        Map<String, FileEntity> existingFileEntityMapClone = new HashMap<String, FileEntity>();
+        Timer timer = new Timer();
+        timer.startTiming();
+        existingFileEntityMapClone.putAll(existingFileEntityMap);
+        timer.stopTiming();
+
+        System.out.println("-----> Time it took to clone map:  " + timer.getDurationString());
+
+        for (String key : existingFileEntityMapClone.keySet()) {
+            System.out.println("  " + index++);
             FileEntity existingFileEntity = existingFileEntityMap.get(key);
+
+            if (existingFileEntity == null) {
+                // it may have already been removed from existingFileEntityMap.
+                // If so, skip this key
+                continue;
+            }
 
             if (!newFileEntityMap.containsKey(key)) {
                 existingFileEntityMap.remove(key);

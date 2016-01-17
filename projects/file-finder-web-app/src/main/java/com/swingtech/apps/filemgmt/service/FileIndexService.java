@@ -10,8 +10,10 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.swingtech.apps.filemgmt.dao.FileIndexDao;
+import com.swingtech.apps.filemgmt.dao.FileIndexPreferencesDao;
 import com.swingtech.apps.filemgmt.dao.impl.file.FileIndexhDaoImplFileBased;
 import com.swingtech.apps.filemgmt.model.FileEntity;
+import com.swingtech.apps.filemgmt.model.FileIndexPreferences;
 import com.swingtech.apps.filemgmt.model.FileIndexResults;
 import com.swingtech.apps.filemgmt.model.FileLocationEntity;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
@@ -19,6 +21,25 @@ import com.swingtech.apps.filemgmt.util.Timer;
 
 public class FileIndexService {
     FileIndexDao fileIndexDao = new FileIndexhDaoImplFileBased();
+    FileIndexPreferencesDao fileIndexPreferencesDao = new FileIndexPreferencesDao();
+
+    public FileIndexPreferences retrieveFileIndexPreferences() {
+        try {
+            return fileIndexPreferencesDao.retrieveDupFilePreferences();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveFileIndexPreferences(FileIndexPreferences fileIndexPreferences) {
+        try {
+            fileIndexPreferencesDao.saveFileIndexPreferences(fileIndexPreferences);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * DOCME
@@ -126,7 +147,7 @@ public class FileIndexService {
 
         reportSuffix = DupFileUtility.getDateString(Calendar.getInstance().getTime(), reportNameDateFormat);
 
-        reportName = "duplicate-file-report-" + reportSuffix + ".txt";
+        reportName = "file-index-report-" + reportSuffix + ".txt";
 
         reportBuffer.append("******Printing Results*****");
         reportBuffer.append("\n   Date Test Run Started = " + fileIndexResults.getDateTestRanStartedDisplayString());
@@ -196,7 +217,12 @@ public class FileIndexService {
         }
     }
 
-    public static void testService(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
+        // testPreferences(args);
+        testIndexFiles(args);
+    }
+
+    public static void testIndexFiles(String[] args) throws Exception {
         FileIndexService fileSearchService = null;
         List<File> searchDirectoryFiles = null;
         File targetReportDirectory = null;
@@ -234,6 +260,56 @@ public class FileIndexService {
 
         System.out.println("Time it took to retrieve an entity:  " + searchEntitty.getFileName() + ".  "
                 + timer.getDurationString());
+    }
+
+    public static void testPreferences(String[] args) throws Exception {
+        FileIndexPreferences fileIndexPreferences = null;
+
+        FileIndexService fileIndexService = new FileIndexService();
+
+        fileIndexPreferences = fileIndexService.retrieveFileIndexPreferences();
+
+        System.out.println("Just pulled the preferences BEFORE save.  Here's values");
+        System.out.println("  # of default directories:  " + fileIndexPreferences.getDefaultSearchDirectories().size());
+        for (File defaultSearchDirectory : fileIndexPreferences.getDefaultSearchDirectories()) {
+            System.out.println("    defaultSearchDirectory:  " + defaultSearchDirectory.getAbsolutePath());
+        }
+        System.out.println("  # of default folder match strings:  "
+                + fileIndexPreferences.getDefaultExcludeDirectoryNames().size());
+        for (String defaultFolderMatchString : fileIndexPreferences.getDefaultExcludeDirectoryNames()) {
+            System.out.println("    defaultFolderMatchString:  " + defaultFolderMatchString);
+        }
+
+        fileIndexPreferences.getDefaultSearchDirectoryNames().add(
+                "C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism");
+        fileIndexPreferences.getDefaultSearchDirectoryNames().add(
+                "C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\marx");
+
+        // fileIndexPreferences.getDefaultExcludeDirectoryNames().add("\\rated\\");
+        // fileIndexPreferences.getDefaultExcludeDirectoryNames().add("\\projects\\");
+
+        fileIndexPreferences.setDefaultReportDirectory("C:\\Users\\splas_000\\speeches\\indexes");
+
+        fileIndexService.saveFileIndexPreferences(fileIndexPreferences);
+
+        fileIndexPreferences = null;
+
+        fileIndexPreferences = fileIndexService.retrieveFileIndexPreferences();
+
+        System.out.println("\n");
+
+        System.out.println("Just pulled the preferences AFTER save.  Here's values");
+        System.out.println("  default Report Directory:  " + fileIndexPreferences.getDefaultReportDirectory());
+        System.out.println("  # of default directories:  " + fileIndexPreferences.getDefaultSearchDirectories().size());
+        for (File defaultSearchDirectory : fileIndexPreferences.getDefaultSearchDirectories()) {
+            System.out.println("    defaultSearchDirectory:  " + defaultSearchDirectory.getAbsolutePath());
+        }
+        System.out.println("  # of default Exclude Directory strings:  "
+                + fileIndexPreferences.getDefaultExcludeDirectoryNames().size());
+        for (String defaultFolderMatchString : fileIndexPreferences.getDefaultExcludeDirectoryNames()) {
+            System.out.println("    defaultFolderMatchString:  " + defaultFolderMatchString);
+        }
+
     }
 
 }
