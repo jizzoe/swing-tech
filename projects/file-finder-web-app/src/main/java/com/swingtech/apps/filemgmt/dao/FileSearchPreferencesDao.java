@@ -38,13 +38,16 @@ public class FileSearchPreferencesDao {
     public FileSearchPreferences retrieveFileSearchPreferences() throws IOException {
         FileSearchPreferences fileSearchPreferences = null;
 
-        if (!preferencesFile.exists()) {
+        if (!preferencesFile.exists() || preferencesFile.length() == 0) {
             File preferencesFileDir = new File(FileMgmtConstants.FILE_MGMT_HOME_DIR);
             preferencesFileDir.mkdirs();
 
             preferencesFile.createNewFile();
+            
+            fileSearchPreferences = new FileSearchPreferences();
+            this.saveFileSearchPreferences(fileSearchPreferences);
 
-            return new FileSearchPreferences();
+            return fileSearchPreferences;
         }
 
         fileSearchPreferences = JsonUtil.unmarshalJsonToObject(preferencesFile, FileSearchPreferences.class);

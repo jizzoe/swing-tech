@@ -32,4 +32,6 @@ public class FileMgmtConstants {
     public static final String FILE_SEARCH_PREFERENCES_FILE_LOCATION = FILE_MGMT_HOME_DIR
             + "/fileSearchPreferences.json";
     public static final String INDEX_REPORT_FILE_LOCATION = FILE_MGMT_HOME_DIR + "/fileIndexReport.json";
+    
+    public static final String GOOGLE_FOLDER_MIME_TYPE = "application/vnd.google-apps.folder";
 }

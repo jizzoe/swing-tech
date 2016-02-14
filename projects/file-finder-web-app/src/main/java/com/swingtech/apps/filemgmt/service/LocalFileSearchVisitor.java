@@ -15,12 +15,12 @@ import com.swingtech.apps.filemgmt.model.FileSearchResults;
 import com.swingtech.apps.filemgmt.model.SearchTermResults;
 import com.swingtech.apps.filemgmt.util.DupFileUtility;
 
-public class FileSearchVisitor implements FileVisitor<Path> {
+public class LocalFileSearchVisitor implements FileVisitor<Path> {
     private final FileSearchResults fileSearchResults;
     private int index = 0;
     private List<String> searchTermPatterns = null;
 
-    public FileSearchVisitor(final FileSearchResults fileSearchResults, List<String> searchTermPatterns) {
+    public LocalFileSearchVisitor(final FileSearchResults fileSearchResults, List<String> searchTermPatterns) {
         super();
         this.fileSearchResults = fileSearchResults;
         this.searchTermPatterns = searchTermPatterns;

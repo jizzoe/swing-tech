@@ -26,7 +26,7 @@ import com.swingtech.apps.filemgmt.model.FileEntity;
 import com.swingtech.apps.filemgmt.model.FileLocationEntity;
 import com.swingtech.apps.filemgmt.model.FileSearchResults;
 import com.swingtech.apps.filemgmt.service.DupFileVisitor;
-import com.swingtech.apps.filemgmt.service.FileSearchVisitor;
+import com.swingtech.apps.filemgmt.service.LocalFileSearchVisitor;
 
 /**
  * @DOCME
@@ -36,7 +36,7 @@ import com.swingtech.apps.filemgmt.service.FileSearchVisitor;
  */
 public class FileMapWalker {
     public static void walkFileEntityMapForSearch(Map<String, FileEntity> fileEntityMap,
-            FileSearchVisitor fileSearchVisitor, FileSearchResults fileSearchResults) {
+            LocalFileSearchVisitor fileSearchVisitor, FileSearchResults fileSearchResults) {
         for (String key : fileEntityMap.keySet()) {
             FileEntity fileEntity = fileEntityMap.get(key);
 

@@ -36,7 +36,7 @@ public class FileLocationEntity {
     private String fileExtension;
     private String absolutePath;
     private File file;
-    private long fileSize;
+    private Long fileSize;
     private URL url;
 
     public FileLocationEntity() {
@@ -89,7 +89,7 @@ public class FileLocationEntity {
     /**
      * @return the fileSize
      */
-    public long getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
@@ -119,7 +119,7 @@ public class FileLocationEntity {
      * @param fileSize
      *            the fileSize to set
      */
-    public void setFileSize(long fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 

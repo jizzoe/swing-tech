@@ -53,21 +53,25 @@ public class DupFileUtility {
     }
 
     public static String getFileNameWithoutExtension(File file) {
-        String fileName = null;
+        return getFileNameWithoutExtension(file.getName());
+    }
 
-        if (file == null) {
+    public static String getFileNameWithoutExtension(String fileName) {
+        String fileNameWithoutExtension = null;
+
+        if (fileName == null) {
             throw new IllegalArgumentException("file cannot be null");
         }
 
-        int fileExtensionIndex = file.getName().lastIndexOf(".");
+        int fileExtensionIndex = fileName.lastIndexOf(".");
 
         if (fileExtensionIndex <= 0) {
-            return file.getName();
+            return fileName;
         }
 
-        fileName = file.getName().substring(0, fileExtensionIndex);
+        fileNameWithoutExtension = fileName.substring(0, fileExtensionIndex);
 
-        return fileName;
+        return fileNameWithoutExtension;
     }
 
     public static String getFileName(File file) {

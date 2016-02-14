@@ -210,7 +210,7 @@ public class FileSearchService {
     private void walkDirectoryForSearchResults(File searchDirectoryFile, FileSearchResults fileSearchResults,
             List<String> matchStrings, boolean walkFileSystem) throws Exception {
         Path resultPath = null;
-        FileSearchVisitor fileSearchVisitor = new FileSearchVisitor(fileSearchResults, matchStrings);
+        LocalFileSearchVisitor fileSearchVisitor = new LocalFileSearchVisitor(fileSearchResults, matchStrings);
         Timer timer = null;
 
         if (walkFileSystem) {
@@ -468,31 +468,32 @@ public class FileSearchService {
         List<String> matchStrings = null;
         FileSearchResults fileSearchResults = null;
 
-        targetReportDirectory = new File("C:\\git\\swingtech\\swing-tech");
+        targetReportDirectory = new File("/tmp/swingtech/filemgmt/reports");
         // targetReportDirectory = new
         // File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\search");
 
         searchDirectoryFiles = new ArrayList<File>();
-        // searchDirectoryFiles.add(new File("C:\\git\\swingtech\\swing-tech"));
-        // searchDirectoryFiles.add(new File("C:\\git\\wdpro"));
+         searchDirectoryFiles.add(new File("/git/swingtech"));
+         searchDirectoryFiles.add(new File("/git/dev"));
 
-        searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism"));
-        searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\marx"));
+//        searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\keyes\\capitalism"));
+//        searchDirectoryFiles.add(new File("C:\\Users\\splas_000\\Google Drive\\speeches\\economic\\marx"));
 
         matchStrings = new ArrayList<String>();
         matchStrings.add("~index~");
         matchStrings.add("~image~jpg");
+        matchStrings.add("pom.xml");
 
         fileSearchService = new FileSearchService();
 
-        fileSearchResults = fileSearchService.findSearchMatchesWithFiles(searchDirectoryFiles, matchStrings, false);
+        fileSearchResults = fileSearchService.findSearchMatchesWithFiles(searchDirectoryFiles, matchStrings, true);
 
         fileSearchService.printSearchResults(fileSearchResults, targetReportDirectory);
     }
 
     public static void main(String[] args) throws Exception {
-        testMoveFiles();
-        // testSearchFiles();
+//        testMoveFiles();
+         testSearchFiles();
         // testPreferences(args);
     }
 }
